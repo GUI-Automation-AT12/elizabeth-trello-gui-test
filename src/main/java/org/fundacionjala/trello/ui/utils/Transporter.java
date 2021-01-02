@@ -16,8 +16,9 @@ public final class Transporter {
     }
 
     static {
-        PAGE_URL.put("MY PROFILE", "usuario");
-        PAGE_URL.put("BOARDS", "boards");
+        PAGE_URL.put("LOGIN", "login");
+        PAGE_URL.put("MY PROFILE", "eliza7890");
+        PAGE_URL.put("BOARDS", "eliza7890/boards");
     }
 
     public static void navigateToPage(final String pageName) throws MalformedURLException {

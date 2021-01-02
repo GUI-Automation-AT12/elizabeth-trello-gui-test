@@ -3,6 +3,7 @@ package org.fundacionjala.trello.ui.gui;
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BoardsPage extends BasePage {
 
@@ -14,6 +15,10 @@ public class BoardsPage extends BasePage {
 
     public BoardsPage (){
         super();
+    }
+
+    public void waitUntilPageObjectIsLoaded() {
+        ElementUtil.waitUntilPageIsLoaded(btnMenu);
     }
 
     public WebElement getBtnLogout() {

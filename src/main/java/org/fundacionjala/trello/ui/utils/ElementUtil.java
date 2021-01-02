@@ -37,4 +37,9 @@ public class ElementUtil {
         WebElement webElement = webDriver.findElement(by);
         clickElement(webElement);
     }
+
+    public static void waitUntilPageIsLoaded(WebElement webElement) {
+        WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
+        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
+    }
 }

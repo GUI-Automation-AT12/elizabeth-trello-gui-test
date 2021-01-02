@@ -1,9 +1,8 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class BoardsPage extends BasePage {
 
@@ -27,9 +26,5 @@ public class BoardsPage extends BasePage {
 
     public void clickBtnMenu() {
         ElementUtil.clickElement(btnMenu);
-    }
-
-    public String getCurrentUrl() {
-        return super.getCurrentUrl();
     }
 }

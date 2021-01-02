@@ -1,11 +1,11 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.core.utils.WebDriverManager;
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateBoardPage extends BasePage{
+public class CreateBoardPage extends BasePage {
     @FindBy(xpath = "//button[@*='header-boards-menu-button']")
     private WebElement buttonBoards;
     @FindBy(xpath = "//button[contains(text(),'Create new board')]")

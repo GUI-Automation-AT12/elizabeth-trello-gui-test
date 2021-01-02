@@ -7,11 +7,11 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.HashMap;
 
-public final class Transporter {
+public final class PageTransporter {
 
     private static final HashMap<String, String> PAGE_URL = new HashMap<>();
 
-    private Transporter() {
+    private PageTransporter() {
 
     }
 

@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
@@ -17,6 +17,9 @@ public class ProfilePage {
 
     @FindBy(xpath = "//button[@*='header-member-menu-button']")
     private WebElement btnMenu;
+
+    @FindBy(id = "layer-manager-alert")
+    private WebElement messageSuccess;
 
     @FindBy(xpath = "//div[@class='tabbed-pane-header']/*/*/*/*/span[2]")
     private WebElement headerSpan;
@@ -40,6 +43,10 @@ public class ProfilePage {
 
     public void clickBtnMenu() {
         ElementUtil.clickElement(btnMenu);
+    }
+
+    public void waitUntilPageObjectIsLoaded() {
+        ElementUtil.waitUntilPageIsLoaded(btnMenu);
     }
 
     public void editUserProfile(final String username , final String bio) {

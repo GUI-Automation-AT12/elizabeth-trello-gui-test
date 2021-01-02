@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.core.utils.WebDriverManager;
 import org.openqa.selenium.WebDriver;
@@ -15,11 +15,4 @@ public class BasePage {
         PageFactory.initElements(this.webDriver,this);
     }
 
-    protected void goBaseURL() {
-        webDriver.get("https://www.trello.com/");
-    }
-
-    protected String getCurrentUrl() {
-        return webDriver.getCurrentUrl();
-    }
 }

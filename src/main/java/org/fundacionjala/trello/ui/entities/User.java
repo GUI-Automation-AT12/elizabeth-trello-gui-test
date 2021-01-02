@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.entities;
 
-import org.fundacionjala.trello.core.utils.IdGenerator;
+import org.fundacionjala.trello.core.utils.utils.IdGenerator;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -19,7 +19,7 @@ public class User {
      */
     public void setUserName(final String userName) {
         this.userName = userName.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
-        this.userName = userName.replaceAll(" ", "");
+        this.userName = userName.replaceAll(" ", "_");
     }
 
     /**

@@ -2,13 +2,11 @@ package org.fundacionjala.trello.ui.stepsDefs;
 
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
-import io.cucumber.java.en.Then;
-import io.cucumber.java.en.When;
 import org.fundacionjala.trello.ui.config.Environment;
-import org.fundacionjala.trello.ui.gui.AtlassianLoginPage;
-import org.fundacionjala.trello.ui.gui.BoardsPage;
-import org.fundacionjala.trello.ui.gui.InitialPage;
-import org.fundacionjala.trello.ui.gui.TrelloLoginPage;
+import org.fundacionjala.trello.ui.entities.User;
+import org.fundacionjala.trello.ui.gui.pages.*;
+
+import java.util.Map;
 
 public class UserStepdefs {
 
@@ -16,6 +14,8 @@ public class UserStepdefs {
     private TrelloLoginPage trelloLoginPage;
     private AtlassianLoginPage atlassianLoginPage;
     private BoardsPage boardsPage;
+    private ProfilePage profilePage;
+    private User user;
 
     @Given("I log in Trello with valid Credentials")
     public void iLogInTrelloWithValidCredentials() {
@@ -26,12 +26,9 @@ public class UserStepdefs {
         boardsPage = atlassianLoginPage.loginTrello(Environment.getInstance().getPassword());
     }
 
-    @When("I navigate to My Profile Page")
-    public void iNavigateToMyProfilePage() {
-    }
-
     @And("I edit My Profile with the following information")
-    public void iEditMyProfileWithTheFollowingInformation() {
+    public void iEditMyProfileWithTheFollowingInformation(final Map<String, String> information) {
+        user.processInformation(information);
     }
 
     @And("My Profile section should be updated")

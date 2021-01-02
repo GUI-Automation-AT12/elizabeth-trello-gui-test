@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.entities;
 
-import org.fundacionjala.trello.core.utils.IdGenerator;
+import org.fundacionjala.trello.core.utils.utils.IdGenerator;
 
 import java.util.HashMap;
 import java.util.HashSet;

@@ -1,11 +1,11 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.core.utils.WebDriverManager;
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class CreateCardPage extends BasePage{
+public class CreateCardPage extends BasePage {
 
     @FindBy(xpath = "//h2[text()='List 1']/parent::div/following-sibling::div/a[contains(.,'Add')]")
     private WebElement buttonAddCard;

@@ -3,10 +3,9 @@ package org.fundacionjala.trello.ui.stepsDefs;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.fundacionjala.trello.ui.config.Environment;
-import org.fundacionjala.trello.ui.gui.AtlassianLoginPage;
-import org.fundacionjala.trello.ui.gui.BoardsPage;
-import org.fundacionjala.trello.ui.gui.InitialPage;
-import org.fundacionjala.trello.ui.gui.TrelloLoginPage;
+import org.fundacionjala.trello.ui.gui.pages.AtlassianLoginPage;
+import org.fundacionjala.trello.ui.gui.pages.BoardsPage;
+import org.fundacionjala.trello.ui.gui.pages.TrelloLoginPage;
 
 import static org.junit.Assert.assertTrue;
 
@@ -23,7 +22,7 @@ public class LoginStepdefs {
     }
 
     @Then("I should view the {string} suffix in the URL")
-    public void iShouldViewTheSuffixInTheURL(final String endPoint) {
+    public void verifyTheSuffixInTheURL(final String endPoint) {
         boardsPage.waitUntilPageObjectIsLoaded();
         assertTrue(boardsPage.getCurrentUrl().contains(endPoint));
     }

@@ -1,10 +1,10 @@
-package org.fundacionjala.trello.ui.gui;
+package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.ui.utils.ElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class AtlassianLoginPage extends BasePage{
+public class AtlassianLoginPage extends BasePage {
     @FindBy(id = "password")
     private WebElement passwordTextBox;
 
@@ -35,6 +35,10 @@ public class AtlassianLoginPage extends BasePage{
 
     public void setPassword(final String password) {
         ElementUtil.setElement(passwordTextBox, password);
+    }
+
+    public void waitUntilPageObjectIsLoaded() {
+        ElementUtil.waitUntilPageIsLoaded(btnLoginSubmit);
     }
 
     public BoardsPage loginTrello(final String password) {

@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.utils;
 
-import org.fundacionjala.trello.core.utils.WebDriverManager;
+import org.fundacionjala.trello.core.WebDriverManager;
 import org.fundacionjala.trello.ui.config.Environment;
 
 import java.net.MalformedURLException;

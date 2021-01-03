@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.entities;
 
-import org.fundacionjala.trello.core.utils.utils.IdGenerator;
+import org.fundacionjala.trello.core.utils.IdGenerator;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,33 +9,33 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class User {
-    private String userName;
+    private String username;
     private String bio;
     private Set<String> updatedFields = new HashSet<>();
 
     /**
      * Sets UserName to a User.
-     * @param userName
+     * @param username
      */
-    public void setUserName(final String userName) {
-        this.userName = userName.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
-        this.userName = userName.replaceAll(" ", "_");
+    public void setUsername(final String username) {
+        this.username = username.replaceAll(" ", "_");
+        this.username = this.username.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
     /**
      * Gets the UserName from a User.
      * @return UserName
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
      * Sets UserName to a User.
      * @param bio
      */
-    public void setBio(final String bio) {
-        userName = bio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
+    public void setBio(String bio) {
+        this.bio = bio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
     /**
@@ -43,7 +43,7 @@ public class User {
      * @return UserName
      */
     public String getBio() {
-        return userName;
+        return bio;
     }
 
     /**
@@ -52,9 +52,8 @@ public class User {
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> userInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("User name", () -> setUserName(userInformation.get("User name")));
-        strategyMap.put("Name", () -> setUserName(userInformation.get("Name")));
-        strategyMap.put("Initials", () -> setBio(userInformation.get("Initials")));
+        strategyMap.put("username", () -> setUsername(userInformation.get("username")));
+        strategyMap.put("bio", () -> setBio(userInformation.get("bio")));
         return strategyMap;
     }
 
@@ -70,9 +69,8 @@ public class User {
 
     private HashMap<String, Supplier<String>> composeStrategyGetter() {
         HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
-        strategyMap.put("User name", () -> getUserName());
-        strategyMap.put("Name", () -> getUserName());
-        strategyMap.put("Initials", () -> getBio());
+        strategyMap.put("username", () -> getUsername());
+        strategyMap.put("bio", () -> getBio());
         return strategyMap;
     }
 

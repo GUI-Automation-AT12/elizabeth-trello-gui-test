@@ -1,15 +1,15 @@
 package org.fundacionjala.trello.ui.utils;
 
-import org.fundacionjala.trello.core.utils.WebDriverManager;
+import org.fundacionjala.trello.core.WebDriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ElementUtil {
+public class WebElementUtil {
 
-    private ElementUtil() {
+    private WebElementUtil() {
         
     }
 
@@ -38,7 +38,7 @@ public class ElementUtil {
         clickElement(webElement);
     }
 
-    public static void waitUntilPageIsLoaded(WebElement webElement) {
+    public static void waitUntilElementIsLoaded(WebElement webElement) {
         WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
         webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
     }

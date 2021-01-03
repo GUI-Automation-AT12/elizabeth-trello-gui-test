@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.core.utils.utils;
+package org.fundacionjala.trello.core.utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

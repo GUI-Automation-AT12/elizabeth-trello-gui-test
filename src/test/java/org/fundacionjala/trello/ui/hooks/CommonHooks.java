@@ -2,7 +2,7 @@ package org.fundacionjala.trello.ui.hooks;
 
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
-import org.fundacionjala.trello.core.utils.WebDriverManager;
+import org.fundacionjala.trello.core.WebDriverManager;
 
 public class CommonHooks {
 

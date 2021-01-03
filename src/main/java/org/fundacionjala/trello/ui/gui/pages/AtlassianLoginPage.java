@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -22,11 +22,11 @@ public class AtlassianLoginPage extends BasePage {
     }
 
     public void clickBtnLoginSubmit() {
-        ElementUtil.clickElement(btnLoginSubmit);
+        WebElementUtil.clickElement(btnLoginSubmit);
     }
 
     public void clickIconUser() {
-        ElementUtil.clickElement(iconUser);
+        WebElementUtil.clickElement(iconUser);
     }
 
     public WebElement getIconUser() {
@@ -34,11 +34,11 @@ public class AtlassianLoginPage extends BasePage {
     }
 
     public void setPassword(final String password) {
-        ElementUtil.setElement(passwordTextBox, password);
+        WebElementUtil.setElement(passwordTextBox, password);
     }
 
     public void waitUntilPageObjectIsLoaded() {
-        ElementUtil.waitUntilPageIsLoaded(btnLoginSubmit);
+        WebElementUtil.waitUntilElementIsLoaded(btnLoginSubmit);
     }
 
     public BoardsPage loginTrello(final String password) {

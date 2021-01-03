@@ -9,7 +9,7 @@ import org.fundacionjala.trello.ui.gui.pages.TrelloLoginPage;
 
 import static org.junit.Assert.assertTrue;
 
-public class LoginStepdefs {
+public class LoginStepDefs {
     private TrelloLoginPage trelloLoginPage;
     private AtlassianLoginPage atlassianLoginPage;
     private BoardsPage boardsPage;

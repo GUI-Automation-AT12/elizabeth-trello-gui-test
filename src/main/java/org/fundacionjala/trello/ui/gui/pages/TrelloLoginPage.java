@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -26,19 +26,19 @@ public class TrelloLoginPage extends BasePage {
     }
 
     public void setUsername(final String username) {
-        ElementUtil.setElement(usernameTextBox, username);
+        WebElementUtil.setElement(usernameTextBox, username);
     }
 
     public void setPassword(final String password) {
-        ElementUtil.setElement(passwordTextBox, password);
+        WebElementUtil.setElement(passwordTextBox, password);
     }
 
     public void clickBtnLogin() {
-        ElementUtil.clickElement(btnLogin);
+        WebElementUtil.clickElement(btnLogin);
     }
 
     public void waitUntilPageObjectIsLoaded() {
-        ElementUtil.waitUntilPageIsLoaded(btnLogin);
+        WebElementUtil.waitUntilElementIsLoaded(btnLogin);
     }
 
     public AtlassianLoginPage clickButtonLoginWithAtlassian(final String username) {

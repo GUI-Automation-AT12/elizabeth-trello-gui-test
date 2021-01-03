@@ -1,5 +1,5 @@
 package org.fundacionjala.trello.ui.stepsDefs;
 
-public class BoardStepdefs {
+public class BoardStepDefs {
 
 }

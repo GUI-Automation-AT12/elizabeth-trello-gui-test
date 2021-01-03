@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.unit;
 
-import org.fundacionjala.trello.core.utils.WebDriverManager;
+import org.fundacionjala.trello.core.WebDriverManager;
 import org.fundacionjala.trello.ui.gui.pages.AtlassianLoginPage;
 import org.fundacionjala.trello.ui.gui.pages.BoardsPage;
 import org.fundacionjala.trello.ui.gui.pages.InitialPage;

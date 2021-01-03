@@ -1,13 +1,17 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.ui.entities.User;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class ProfilePage {
+import java.util.HashMap;
+import java.util.Map;
+
+public class ProfilePage extends BasePage{
 
     @FindBy(xpath = "//button[text()='Save']")
-    private WebElement btnLoginSubmit;
+    private WebElement btnSave;
 
     @FindBy(xpath = "//input[@*='username']")
     private WebElement usernameTextBox;
@@ -18,44 +22,69 @@ public class ProfilePage {
     @FindBy(xpath = "//button[@*='header-member-menu-button']")
     private WebElement btnMenu;
 
-    @FindBy(id = "layer-manager-alert")
+    @FindBy(xpath = "//div[@id='layer-manager-alert']/div")
     private WebElement messageSuccess;
 
-    @FindBy(xpath = "//div[@class='tabbed-pane-header']/*/*/*/*/span[2]")
-    private WebElement headerSpan;
-
+    @FindBy(css = "div.tabbed-pane-header span:nth-child(2)")
+    private WebElement headerTextContent;
 
     public ProfilePage() {
         super();
     }
 
-    public void clickBtnLoginSubmit() {
-        ElementUtil.clickElement(btnLoginSubmit);
+    public void clickBtnSave() {
+        WebElementUtil.clickElement(btnSave);
     }
 
     public void setUsernameTextBox(final String username) {
-        ElementUtil.setElement(usernameTextBox, username);
+        WebElementUtil.setElement(usernameTextBox, username);
     }
 
     public void setBioTextarea(final String bio) {
-        ElementUtil.setElement(bioTextarea, bio);
+        WebElementUtil.setElement(bioTextarea, bio);
     }
 
     public void clickBtnMenu() {
-        ElementUtil.clickElement(btnMenu);
+        WebElementUtil.clickElement(btnMenu);
     }
 
     public void waitUntilPageObjectIsLoaded() {
-        ElementUtil.waitUntilPageIsLoaded(btnMenu);
+        WebElementUtil.waitUntilElementIsLoaded(btnMenu);
     }
 
     public void editUserProfile(final String username , final String bio) {
         this.setUsernameTextBox(username);
         this.setBioTextarea(bio);
-        this.clickBtnLoginSubmit();
+        this.clickBtnSave();
     }
 
-    public WebElement getHeaderSpan() {
-        return headerSpan;
+    public WebElement getHeaderTextContent() {
+        WebElementUtil.waitUntilElementIsLoaded(headerTextContent);
+        return headerTextContent;
+    }
+
+    public WebElement getUsernameTextBox() {
+        return usernameTextBox;
+    }
+
+    public WebElement getBioTextarea() {
+        return bioTextarea;
+    }
+
+    public boolean isDisplayedMessageSuccess() {
+        return messageSuccess.isDisplayed();
+    }
+
+    public void editUserProfile(User user) {
+        HashMap<String, Runnable> strategyMap = composeStrategySetter(user.getUpdatedInfo());
+        user.getUpdatedInfo().keySet().forEach(key -> strategyMap.get(key).run());
+        clickBtnSave();
+    }
+
+    private HashMap<String, Runnable> composeStrategySetter(Map<String, String> userInformation) {
+        HashMap<String, Runnable> strategyMap = new HashMap<>();
+        strategyMap.put("username", () -> setUsernameTextBox(userInformation.get("username")));
+        strategyMap.put("bio", () -> setBioTextarea(userInformation.get("bio")));
+        return strategyMap;
     }
 }

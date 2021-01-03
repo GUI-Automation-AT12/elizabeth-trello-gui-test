@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -22,7 +22,7 @@ public class InitialPage extends BasePage{
     }
 
     public TrelloLoginPage clickOnButtonLogin() {
-        ElementUtil.clickElement(btnLogin);
+        WebElementUtil.clickElement(btnLogin);
         return new TrelloLoginPage();
 
     }
@@ -31,7 +31,4 @@ public class InitialPage extends BasePage{
         return title;
     }
 
-    public void goBaseUrl(){
-        super.goBaseURL();
-    }
 }

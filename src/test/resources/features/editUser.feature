@@ -5,6 +5,7 @@ Feature: Edit user
     Given I log in Trello with valid Credentials
     When I navigate to My Profile Page
       And I edit My Profile with the following information
-        | username             |  User name UNIQUE_ID            |
+        | username             |  new user name UNIQUE_ID            |
         | bio                  |  Description UNIQUE_ID          |
-    Then My Profile section should be updated
+    Then "Saved" message should be displayed in My Profile section
+      And the user information should be updated in My Profile section

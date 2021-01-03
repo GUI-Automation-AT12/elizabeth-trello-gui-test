@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,7 +17,7 @@ public class BoardsPage extends BasePage {
     }
 
     public void waitUntilPageObjectIsLoaded() {
-        ElementUtil.waitUntilPageIsLoaded(btnMenu);
+        WebElementUtil.waitUntilElementIsLoaded(btnMenu);
     }
 
     public WebElement getBtnLogout() {
@@ -25,6 +25,6 @@ public class BoardsPage extends BasePage {
     }
 
     public void clickBtnMenu() {
-        ElementUtil.clickElement(btnMenu);
+        WebElementUtil.clickElement(btnMenu);
     }
 }

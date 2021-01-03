@@ -1,7 +1,7 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.core.utils.WebDriverManager;
-import org.fundacionjala.trello.ui.utils.ElementUtil;
+import org.fundacionjala.trello.core.WebDriverManager;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -24,9 +24,9 @@ public class CreateBoardPage extends BasePage {
     }
 
     public void clickButtonCreateBoard(final String name) {
-        ElementUtil.clickElement(buttonBoards);
-        ElementUtil.clickElement(linkCreateBoard);
-        ElementUtil.setElement(textBoxNameBoard, name);
-        ElementUtil.clickElement(buttonCreateBoard);
+        WebElementUtil.clickElement(buttonBoards);
+        WebElementUtil.clickElement(linkCreateBoard);
+        WebElementUtil.setElement(textBoxNameBoard, name);
+        WebElementUtil.clickElement(buttonCreateBoard);
     }
 }

@@ -1,4 +1,4 @@
-package org.fundacionjala.trello.core.utils.WebDrivers;
+package org.fundacionjala.trello.core.WebDrivers;
 
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import org.openqa.selenium.WebDriver;

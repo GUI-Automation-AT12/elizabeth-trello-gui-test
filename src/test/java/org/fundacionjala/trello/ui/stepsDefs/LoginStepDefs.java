@@ -19,6 +19,7 @@ public class LoginStepDefs {
         trelloLoginPage = new TrelloLoginPage();
         atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(Environment.getInstance().getUsername());
         boardsPage = atlassianLoginPage.loginTrello(Environment.getInstance().getPassword());
+        boardsPage.waitUntilPageObjectIsLoaded();
     }
 
     @Then("I should view the {string} suffix in the URL")

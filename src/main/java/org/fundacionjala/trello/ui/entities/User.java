@@ -39,11 +39,19 @@ public class User {
     }
 
     /**
-     * Gets the UserName from a User.
-     * @return UserName
+     * Gets the bio from a User.
+     * @return bio
      */
     public String getBio() {
         return bio;
+    }
+
+    /**
+     * Gets the updatedFields from a User.
+     * @return updatedFields
+     */
+    public Set<String> getUpdatedFields() {
+        return updatedFields;
     }
 
     /**

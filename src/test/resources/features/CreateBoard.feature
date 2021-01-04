@@ -1,3 +1,4 @@
+@Board
 Feature: Create Board
 
 

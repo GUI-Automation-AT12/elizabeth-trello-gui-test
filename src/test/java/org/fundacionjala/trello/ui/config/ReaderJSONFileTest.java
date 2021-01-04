@@ -1,6 +1,7 @@
 package org.fundacionjala.trello.ui.config;
 
 import junit.framework.TestCase;
+import org.fundacionjala.trello.core.utils.ReaderJSONFile;
 
 public class ReaderJSONFileTest extends TestCase {
 

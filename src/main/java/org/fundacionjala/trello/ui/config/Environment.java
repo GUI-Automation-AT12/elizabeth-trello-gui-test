@@ -1,32 +1,21 @@
 package org.fundacionjala.trello.ui.config;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.Properties;
+import org.fundacionjala.trello.core.utils.ReaderPropertiesFile;
 
-public class Environment {
+public final    class Environment {
     private static final String PATH = "gradle.properties";
     private static Environment singleInstance;
-    private Properties property;
-    private FileReader reader;
+    private ReaderPropertiesFile reader;
 
+    /**
+     * Constructor.
+     */
     private Environment() {
-        try {
-            reader = new FileReader(PATH);
-            property = new Properties();
-            property.load(reader);
-        } catch (FileNotFoundException e) {
-            System.out.println(e.getMessage());
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        } finally {
-            closeReader();
-        }
+        reader = new ReaderPropertiesFile(PATH);
     }
 
     /**
-     * get instance or create a new one.
+     * Gets instance or create a new one.
      *
      * @return PropertiesReader instance.
      */
@@ -38,65 +27,37 @@ public class Environment {
     }
 
     /**
-     * get the BaseUrl from the file.properties.
+     *Gets the BaseUrl from the file.properties.
      *
      * @return base url.
      */
     public String getBaseUrl() {
-        return getEnvProperty("baseUrl");
+        return reader.getEnvProperty("baseUrl");
     }
 
     /**
-     * get the User from the file.properties.
+     *Gets the User from the file.properties.
      *
      * @return User value.
      */
     public String getUsername() {
-        return getEnvProperty("username");
+        return reader.getEnvProperty("username");
     }
 
     /**
-     * get the password from the file.properties.
+     *Gets the password from the file.properties.
      *
      * @return Password value.
      */
     public String getPassword() {
-        return getEnvProperty("password");
+        return reader.getEnvProperty("password");
     }
 
     /**
-     * get the cucumberThreadCount from the file.properties.
+     *Gets the cucumberThreadCount from the file.properties.
      * @return cucumberThreadCount value.
      */
     public String getCucumberThreadCount() {
-        return getEnvProperty("cucumberThreadCount");
-    }
-
-    private String getEnvProperty(final String env) {
-        String localProperty = System.getProperty(env);
-        if (localProperty == null) {
-            return this.property.getProperty(env);
-        }
-        return localProperty;
-    }
-
-    private void closeReader() {
-        try {
-            reader.close();
-        } catch (IOException e) {
-            System.out.println(e.getMessage());
-        }
-    }
-
-    public int getImplicitTime() {
-        return Integer.parseInt(getEnvProperty("implicitTimeChrome"));
-    }
-
-    public int getExplicitTime() {
-        return Integer.parseInt(getEnvProperty("explicitTimeChrome"));
-    }
-
-    public String pathDriverChrome(String browser) {
-        return getEnvProperty("pathDriver"+browser);
+        return reader.getEnvProperty("cucumberThreadCount");
     }
 }

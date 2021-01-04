@@ -1,5 +1,7 @@
-package org.fundacionjala.trello.ui.config;
+package org.fundacionjala.trello.core.utils;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -9,14 +11,25 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class ReaderJSONFile {
+    private static final Logger LOGGER = LogManager.getLogger(ReaderJSONFile.class);
     private String pathFile;
     private FileReader reader;
     private JSONParser jsonParser = new JSONParser();
 
-    public ReaderJSONFile(String pathFile) {
-        this.pathFile = pathFile;
+    /**
+     * Constructor.
+     * @param path
+     */
+    public ReaderJSONFile(final String path) {
+        this.pathFile = path;
     }
 
+    /**
+     * Get data from json file.
+     * @param alias
+     * @param key
+     * @return value
+     */
     public String getData(final String alias, final String key) {
         String value = " ";
         try {
@@ -26,13 +39,13 @@ public class ReaderJSONFile {
             value = jsonData.get(key).toString();
 
         } catch (FileNotFoundException fe) {
-            System.out.println(fe.getMessage());
+            LOGGER.error(fe.getMessage());
         } catch (IOException ioe) {
-            System.out.println(ioe.getMessage());
+            LOGGER.error(ioe.getMessage());
         } catch (ParseException pe) {
-            System.out.println(pe.getMessage());
+            LOGGER.error(pe.getMessage());
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            LOGGER.error(e.getMessage());
         }
         return value;
     }

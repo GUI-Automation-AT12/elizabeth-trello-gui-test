@@ -1,8 +1,20 @@
 package org.fundacionjala.trello.core.utils;
 
-public class IdGenerator {
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
+public final class IdGenerator {
+
+    private IdGenerator() {
+    }
+
+    /**
+     * Gets a string with formatted date.
+     * @return uniqueId
+     */
     public static String getUniqueId() {
-        String id = "-" + Math.random();
-        return id;
+        SimpleDateFormat formatter = new SimpleDateFormat("yyyyMMddHHmmss");
+        Date date = new Date(System.currentTimeMillis());
+        return  formatter.format(date);
     }
 }

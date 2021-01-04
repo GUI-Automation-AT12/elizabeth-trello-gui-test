@@ -9,7 +9,7 @@ public class ReaderFileTest extends TestCase {
 
     public void testPrint() throws IOException {
         //ReaderFile readerFile = new ReaderFile("config/properties.json");
-        ReaderFile readerFile = new ReaderFile("gradle.properties");
-        readerFile.print();
+//        ReaderPropertiesFile readerFile = new ReaderPropertiesFile("gradle.properties");
+//        readerFile.print();
     }
 }

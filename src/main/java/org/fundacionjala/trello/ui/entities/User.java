@@ -9,52 +9,60 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class User {
-    private String userName;
+    private String username;
     private String bio;
     private Set<String> updatedFields = new HashSet<>();
 
     /**
      * Sets UserName to a User.
-     * @param userName
+     * @param newUsername
      */
-    public void setUserName(final String userName) {
-        this.userName = userName.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
-        this.userName = userName.replaceAll(" ", "");
+    public void setUsername(final String newUsername) {
+        this.username = newUsername.replaceAll(" ", "_");
+        this.username = this.username.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
     /**
      * Gets the UserName from a User.
      * @return UserName
      */
-    public String getUserName() {
-        return userName;
+    public String getUsername() {
+        return username;
     }
 
     /**
-     * Sets UserName to a User.
-     * @param bio
+     * Sets bio to a User.
+     * @param newBio
      */
-    public void setBio(final String bio) {
-        userName = bio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
+    public void setBio(final String newBio) {
+        this.bio = newBio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
     /**
-     * Gets the UserName from a User.
-     * @return UserName
+     * Gets the bio from a User.
+     * @return bio
      */
     public String getBio() {
-        return userName;
+        return bio;
     }
 
     /**
-     * Process all information stored for a User as a map.
+     * Gets the updatedFields from a User.
+     * @return updatedFields
+     */
+    public Set<String> getUpdatedFields() {
+        return updatedFields;
+    }
+
+    /**
+     * Composes strategy getter map.
      * @param userInformation
+     * @return HashMap
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> userInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("User name", () -> setUserName(userInformation.get("User name")));
-        strategyMap.put("Name", () -> setUserName(userInformation.get("Name")));
-        strategyMap.put("Initials", () -> setBio(userInformation.get("Initials")));
+        strategyMap.put("username", () -> setUsername(userInformation.get("username")));
+        strategyMap.put("bio", () -> setBio(userInformation.get("bio")));
         return strategyMap;
     }
 
@@ -68,14 +76,21 @@ public class User {
         updatedFields = userInformation.keySet();
     }
 
+    /**
+     * Composes strategy getter map.
+     * @return HashMap
+     */
     private HashMap<String, Supplier<String>> composeStrategyGetter() {
         HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
-        strategyMap.put("User name", () -> getUserName());
-        strategyMap.put("Name", () -> getUserName());
-        strategyMap.put("Initials", () -> getBio());
+        strategyMap.put("username", () -> getUsername());
+        strategyMap.put("bio", () -> getBio());
         return strategyMap;
     }
 
+    /**
+     * Gets updated information of user.
+     * @return userinfo
+     */
     public Map<String, String> getUpdatedInfo() {
         Map<String, String> userInfo = new HashMap<>();
         HashMap<String, Supplier<String>> strategyMap = composeStrategyGetter();

@@ -3,9 +3,5 @@
     "name": "chrome",
     "implicitTime": "20",
     "explicitTime": "30"
-  },
-  "user2" : {
-    "name": "userDos",
-    "pass": "pass1234"
   }
 }

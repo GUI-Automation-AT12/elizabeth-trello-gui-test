@@ -1,7 +1,9 @@
 package org.fundacionjala.trello.ui.config;
 
-public class AppEnvironment {
-    private static final String PATH = "properties/properties.json";
+import org.fundacionjala.trello.core.utils.ReaderJSONFile;
+
+public final class AppEnvironment {
+    private static final String PATH = "properties/App-properties.json";
     private static final String ALIAS = "app";
     private static AppEnvironment singleInstance;
     private ReaderJSONFile reader;
@@ -11,9 +13,8 @@ public class AppEnvironment {
     }
 
     /**
-     * get instance or create a new one.
-     *
-     * @return PropertiesReader instance.
+     * Gets instance or create a new.
+     * @return AppEnvironment instance
      */
     public static AppEnvironment getInstance() {
         if (singleInstance == null) {
@@ -23,35 +24,32 @@ public class AppEnvironment {
     }
 
     /**
-     * get the BaseUrl from the file.properties.
-     *
-     * @return base url.
+     * Gets the BaseUrl from file.
+     * @return base url
      */
     public String getBaseUrl() {
         return getProperty("baseUrl");
     }
 
     /**
-     * get the User from the file.properties.
-     *
-     * @return User value.
+     * Gets the Username from file.
+     * @return Username
      */
     public String getUsername() {
         return getProperty("username");
     }
 
     /**
-     * get the password from the file.properties.
-     *
-     * @return Password value.
+     * Gets the password from file.
+     * @return Password
      */
     public String getPassword() {
         return getProperty("password");
     }
 
     /**
-     * get the cucumberThreadCount from the file.properties.
-     * @return cucumberThreadCount value.
+     * Gets the cucumberThreadCount from file.
+     * @return cucumberThreadCount
      */
     public String getCucumberThreadCount() {
         return getProperty("cucumberThreadCount");

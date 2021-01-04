@@ -14,33 +14,40 @@ public class AtlassianLoginPage extends BasePage {
     @FindBy(xpath = "//title[contains(text(), 'Trello')]")
     private WebElement title;
 
-    @FindBy(xpath = "//button[@*='header-member-menu-button']")
-    private WebElement iconUser;
-
+    /**
+     * Constructor.
+     */
     public AtlassianLoginPage() {
         super();
     }
 
+    /**
+     * Clicks login button.
+     */
     public void clickBtnLoginSubmit() {
         WebElementUtil.clickElement(btnLoginSubmit);
     }
 
-    public void clickIconUser() {
-        WebElementUtil.clickElement(iconUser);
-    }
-
-    public WebElement getIconUser() {
-        return iconUser;
-    }
-
+    /**
+     * Sets password.
+     * @param password
+     */
     public void setPassword(final String password) {
         WebElementUtil.setElement(passwordTextBox, password);
     }
 
+    /**
+     * Waits until page is Loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
         WebElementUtil.waitUntilElementIsLoaded(btnLoginSubmit);
     }
 
+    /**
+     * Login in Trello application.
+     * @param password
+     * @return the boards page
+     */
     public BoardsPage loginTrello(final String password) {
         this.setPassword(password);
         this.clickBtnLoginSubmit();

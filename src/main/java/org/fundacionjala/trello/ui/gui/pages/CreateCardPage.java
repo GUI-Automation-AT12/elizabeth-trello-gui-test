@@ -7,22 +7,35 @@ import org.openqa.selenium.support.FindBy;
 
 public class CreateCardPage extends BasePage {
 
-    @FindBy(xpath = "//h2[text()='List 1']/parent::div/following-sibling::div/a[contains(.,'Add')]")
+    @FindBy(css = "a.js-add-card")
     private WebElement buttonAddCard;
+
     @FindBy(className = "list-card-composer-textarea")
     private WebElement textBoxNameCard;
-    @FindBy(xpath = "//input[@value='Add Card']")
+
+    @FindBy(css = "input[value='Add Card']")
     private WebElement buttonCreateCard;
 
+    /**
+     * Constructor.
+     */
     public CreateCardPage() {
         super();
     }
 
+    /**
+     * Gets title page.
+     * @return title
+     */
     public String getTitle() {
         return WebDriverManager.getInstance().getWebDriver().getTitle();
     }
 
-    public void clickButtonCreateBoard(final String name) {
+    /**
+     * Creates a card by clicking create card button.
+     * @param name
+     */
+    public void clickButtonCreateCard(final String name) {
         WebElementUtil.clickElement(buttonAddCard);
         WebElementUtil.setElement(textBoxNameCard, name);
         WebElementUtil.clickElement(buttonCreateCard);

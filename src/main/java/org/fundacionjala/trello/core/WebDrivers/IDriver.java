@@ -4,5 +4,9 @@ import org.openqa.selenium.WebDriver;
 
 public interface IDriver {
 
-    public WebDriver initDriver();
+    /**
+     * Inits Driver.
+     * @return WebDriver
+     */
+    WebDriver initDriver();
 }

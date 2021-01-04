@@ -20,15 +20,25 @@ public class TrelloPageTest {
     private TrelloLoginPage trelloLoginPage;
     private BoardsPage boardsPage;
 
+    /**
+     * Redirects to initial page.
+     */
     @Before
     public void setUp() {
         WebDriverManager.getInstance().getWebDriver().get(pageUrl);
     }
+
+    /**
+     * Closes browser.
+     */
     @After
     public void tearDown() {
         WebDriverManager.getInstance().getWebDriver().quit();
     }
 
+    /**
+     * Tests login to the application.
+     */
     @Test
     public void testLogin() {
         initialPage = new InitialPage();

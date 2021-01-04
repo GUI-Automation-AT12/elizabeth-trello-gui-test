@@ -13,16 +13,16 @@ public class Board {
     private Set<String> updatedFields = new HashSet<>();
 
     /**
-     * Sets name to a User.
-     * @param name
+     * Sets name to a board.
+     * @param boardName
      */
-    public void setName(final String name) {
-        this.name = name.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
-        this.name = name.replaceAll(" ", "");
+    public void setName(final String boardName) {
+        this.name = boardName.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
+        this.name = boardName.replaceAll(" ", "");
     }
 
     /**
-     * Gets the UserName from a User.
+     * Gets the name from a board.
      * @return UserName
      */
     public String getName() {
@@ -30,8 +30,9 @@ public class Board {
     }
 
     /**
-     * Process all information stored for a User as a map.
+     * Composes strategy setter map.
      * @param boardInformation
+     * @return HashMap
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> boardInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
@@ -49,16 +50,24 @@ public class Board {
         updatedFields = userInformation.keySet();
     }
 
+    /**
+     * Composes strategy getter map.
+     * @return HashMap
+     */
     private HashMap<String, Supplier<String>> composeStrategyGetter() {
         HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
         strategyMap.put("Name", () -> getName());
         return strategyMap;
     }
 
+    /**
+     * Gets updated information of board.
+     * @return userinfo
+     */
     public Map<String, String> getUpdatedInfo() {
-        Map<String, String> userInfo = new HashMap<>();
+        Map<String, String> boardInfo = new HashMap<>();
         HashMap<String, Supplier<String>> strategyMap = composeStrategyGetter();
-        updatedFields.forEach(field -> userInfo.put(field, strategyMap.get(field).get()));
-        return userInfo;
+        updatedFields.forEach(field -> boardInfo.put(field, strategyMap.get(field).get()));
+        return boardInfo;
     }
 }

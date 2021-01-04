@@ -9,20 +9,33 @@ public class CreateListPage extends BasePage {
 
     @FindBy(className = "open-add-list")
     private WebElement buttonAddList;
+
     @FindBy(className = "list-name-input")
     private WebElement textBoxNameList;
-    @FindBy(xpath = "//input[@value='Add List']")
+
+    @FindBy(css = "input[value='Add List']")
     private WebElement buttonCreateList;
 
+    /**
+     * Constructor.
+     */
     public CreateListPage() {
         super();
     }
 
+    /**
+     * Gets title page.
+     * @return title
+     */
     public String getTitle() {
         return WebDriverManager.getInstance().getWebDriver().getTitle();
     }
 
-    public void clickButtonCreateBoard(final String name) {
+    /**
+     * Creates a list by clicking create list button.
+     * @param name
+     */
+    public void clickButtonCreateList(final String name) {
         WebElementUtil.clickElement(buttonAddList);
         WebElementUtil.setElement(textBoxNameList, name);
         WebElementUtil.clickElement(buttonCreateList);

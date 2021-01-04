@@ -27,6 +27,9 @@ public class TrelloTest {
     WebDriverWait wait;
 
 
+    /**
+     * Opens browser and redirects to initial page.
+     */
     @Before
     public void setUp() {
         System.setProperty("webdriver.chrome.driver", "driver/chromedriver.exe");
@@ -37,11 +40,17 @@ public class TrelloTest {
         wait = new WebDriverWait(driver, 30);
     }
 
+    /**
+     * Closes the browser
+     */
     @After
     public void tearDown() {
         driver.quit();
     }
 
+    /**
+     * Tests login to application.
+     */
     @Ignore
     public void loginTest() {
 //        wait = new WebDriverWait(driver, 30);
@@ -58,6 +67,9 @@ public class TrelloTest {
 //        assertEquals(driver.findElement(By.xpath("//button[@*='header-member-menu-logout']/span")).getText(), "Log Out");
     }
 
+    /**
+     * Tests create a board.
+     */
     @Ignore
     public void createBoard() {
 //        driver.get("https://trello.com/");
@@ -77,6 +89,9 @@ public class TrelloTest {
 //        driver.getCurrentUrl();
     }
 
+    /**
+     * Tests delete a board.
+     */
     @Ignore
     public void deleteBoard() {
 //        driver.get("https://trello.com/");
@@ -102,6 +117,9 @@ public class TrelloTest {
 //        assertTrue(driver.findElement(By.linkText("Board not found.")).isEnabled());
     }
 
+    /**
+     * Tests create a list.
+     */
     @Ignore
     public void createList() {
 //        driver.get("https://trello.com/");
@@ -122,6 +140,9 @@ public class TrelloTest {
 //        assertTrue(driver.findElement(By.xpath("//div[@class='js-list list-wrapper']/div/div/h2[text()='List 1']")).isEnabled());
     }
 
+    /**
+     * Tests delete a List.
+     */
     @Ignore
     public void deleteList() {
 //        driver.get("https://trello.com/");
@@ -140,6 +161,9 @@ public class TrelloTest {
 //        driver.findElement(By.xpath("//a[@class='js-close-list']")).click();
     }
 
+    /**
+     * Tests create a card.
+     */
     @Ignore
     public void createCard() {
 //        driver.get("https://trello.com/");
@@ -160,6 +184,9 @@ public class TrelloTest {
 //        assertTrue(driver.findElement(By.xpath("//h2[text()='List 1']/parent::*/following-sibling::div/a[contains(.,'Card 1')]")).isEnabled());
     }
 
+    /**
+     * Tests delete a board.
+     */
     @Ignore
     public void deleteCard() {
 //        driver.get("https://trello.com/");

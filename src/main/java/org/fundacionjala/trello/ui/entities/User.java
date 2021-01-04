@@ -15,10 +15,10 @@ public class User {
 
     /**
      * Sets UserName to a User.
-     * @param username
+     * @param newUsername
      */
-    public void setUsername(final String username) {
-        this.username = username.replaceAll(" ", "_");
+    public void setUsername(final String newUsername) {
+        this.username = newUsername.replaceAll(" ", "_");
         this.username = this.username.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
@@ -31,11 +31,11 @@ public class User {
     }
 
     /**
-     * Sets UserName to a User.
-     * @param bio
+     * Sets bio to a User.
+     * @param newBio
      */
-    public void setBio(String bio) {
-        this.bio = bio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
+    public void setBio(final String newBio) {
+        this.bio = newBio.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
     }
 
     /**
@@ -55,8 +55,9 @@ public class User {
     }
 
     /**
-     * Process all information stored for a User as a map.
+     * Composes strategy getter map.
      * @param userInformation
+     * @return HashMap
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> userInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
@@ -75,6 +76,10 @@ public class User {
         updatedFields = userInformation.keySet();
     }
 
+    /**
+     * Composes strategy getter map.
+     * @return HashMap
+     */
     private HashMap<String, Supplier<String>> composeStrategyGetter() {
         HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
         strategyMap.put("username", () -> getUsername());
@@ -82,6 +87,10 @@ public class User {
         return strategyMap;
     }
 
+    /**
+     * Gets updated information of user.
+     * @return userinfo
+     */
     public Map<String, String> getUpdatedInfo() {
         Map<String, String> userInfo = new HashMap<>();
         HashMap<String, Supplier<String>> strategyMap = composeStrategyGetter();

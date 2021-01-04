@@ -14,6 +14,9 @@ public class LoginStepDefs {
     private AtlassianLoginPage atlassianLoginPage;
     private BoardsPage boardsPage;
 
+    /**
+     * Set use and password.
+     */
     @When("I set username and password")
     public void setTextBoxes() {
         trelloLoginPage = new TrelloLoginPage();
@@ -22,9 +25,13 @@ public class LoginStepDefs {
         boardsPage.waitUntilPageObjectIsLoaded();
     }
 
+    /**
+     * Verify if url contains the endpoint.
+     * @param endPoint
+     */
     @Then("I should view the {string} suffix in the URL")
     public void verifyTheSuffixInTheURL(final String endPoint) {
         boardsPage.waitUntilPageObjectIsLoaded();
-        assertTrue(boardsPage.getCurrentUrl().contains(endPoint));
+        assertTrue(boardsPage.getWebDriver().getCurrentUrl().contains(endPoint));
     }
 }

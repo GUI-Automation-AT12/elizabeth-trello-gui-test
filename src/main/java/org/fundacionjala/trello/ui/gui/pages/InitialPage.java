@@ -3,32 +3,32 @@ package org.fundacionjala.trello.ui.gui.pages;
 import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class InitialPage extends BasePage{
+public class InitialPage extends BasePage {
 
-    @FindBy(xpath = "//div[@class='float-right buttons']/a[1]")
+    @FindBy(css = "a[href*='/login']")
     private WebElement btnLogin;
 
-    @FindBy(xpath = "//title[contains(text(), 'Trello')]")
-    private WebElement title;
-
+    /**
+     * Constructor.
+     */
     public InitialPage() {
         super();
     }
 
+    /**
+     * Waits until page is loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
-        webDriverWait.until(ExpectedConditions.visibilityOf(btnLogin));
+        WebElementUtil.waitUntilElementIsLoaded(btnLogin);
     }
 
+    /**
+     * Clicks in login button.
+     * @return Trello login page
+     */
     public TrelloLoginPage clickOnButtonLogin() {
         WebElementUtil.clickElement(btnLogin);
         return new TrelloLoginPage();
-
     }
-
-    public WebElement getTitle() {
-        return title;
-    }
-
 }

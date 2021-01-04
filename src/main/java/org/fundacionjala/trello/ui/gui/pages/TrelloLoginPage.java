@@ -5,7 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class TrelloLoginPage extends BasePage {
-    @FindBy(xpath = "//div[@class = 'email-password']/div/input[@id='user']")
+
+    @FindBy(id = "user")
     private WebElement usernameTextBox;
 
     @FindBy(id = "password")
@@ -14,33 +15,48 @@ public class TrelloLoginPage extends BasePage {
     @FindBy(id = "login")
     private WebElement btnLogin;
 
-    @FindBy(xpath = "//title[contains(text(), 'Trello')]")
-    private WebElement title;
-
+    /**
+     * Constructor.
+     */
     public TrelloLoginPage() {
         super();
     }
 
-    public WebElement getTitle() {
-        return title;
-    }
-
+    /**
+     * Sets username textBox.
+     * @param username
+     */
     public void setUsername(final String username) {
         WebElementUtil.setElement(usernameTextBox, username);
     }
 
+    /**
+     * Sets password textBox.
+     * @param password
+     */
     public void setPassword(final String password) {
         WebElementUtil.setElement(passwordTextBox, password);
     }
 
+    /**
+     * Clicks login button.
+     */
     public void clickBtnLogin() {
         WebElementUtil.clickElement(btnLogin);
     }
 
+    /**
+     * Waits until the page is loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
         WebElementUtil.waitUntilElementIsLoaded(btnLogin);
     }
 
+    /**
+     * Redirects to Atlassian page.
+     * @param username
+     * @return Atlassian page
+     */
     public AtlassianLoginPage clickButtonLoginWithAtlassian(final String username) {
         this.setUsername(username);
         this.clickBtnLogin();

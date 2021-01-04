@@ -7,8 +7,10 @@ import org.fundacionjala.trello.ui.config.Environment;
 import org.fundacionjala.trello.ui.entities.User;
 import org.fundacionjala.trello.ui.gui.pages.*;
 import org.fundacionjala.trello.ui.utils.PageTransporter;
+import org.json.simple.parser.ParseException;
 import org.testng.asserts.SoftAssert;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 
@@ -22,6 +24,10 @@ public class UserStepDefs {
     private ProfilePage profilePage;
     private final User user = new User();
 
+    /**
+     * Login to Trello with valid credentials.
+     * @throws MalformedURLException
+     */
     @Given("I log in Trello with valid Credentials")
     public void iLogInTrelloWithValidCredentials() throws MalformedURLException {
         PageTransporter.navigateToPage("login");
@@ -32,21 +38,32 @@ public class UserStepDefs {
         boardsPage.waitUntilPageObjectIsLoaded();
     }
 
+    /**
+     * Edit user.
+     * @param userInformation
+     */
     @When("I edit My Profile with the following information")
-    public void iEditMyProfileWithTheFollowingInformation(final Map<String, String> information) {
+    public void iEditMyProfileWithTheFollowingInformation(final Map<String, String> userInformation) {
         profilePage = new ProfilePage();
         //save information in the entity
-        user.processInformation(information);
+        user.processInformation(userInformation);
         //update information by ui
         profilePage.editUserProfile(user);
     }
 
-    @Then("{string} message should be displayed in My Profile section")
+    /**
+     * Verify message of information updated.
+     * @param message
+     */
+    @Then("{string} message should be displayed in My Profile and Visibility section")
     public void verifyMessageShouldBeDisplayedInMyProfileSection(String message) {
         assertTrue(message, profilePage.isDisplayedMessageSuccess());
     }
 
-    @Then("the user information should be updated in My Profile section")
+    /**
+     * Verify user's information after update.
+     */
+    @Then("the user information should be updated in My Profile and Visibility section")
     public void verifyTheUserInformationShouldBeUpdatedInMyProfileSection() {
         SoftAssert softAssert = new SoftAssert();
         //Gets information of fields edited.

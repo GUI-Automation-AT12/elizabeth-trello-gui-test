@@ -6,24 +6,37 @@ import org.openqa.selenium.support.FindBy;
 
 public class BoardsPage extends BasePage {
 
-    @FindBy(xpath = "//button[@*='header-member-menu-logout']/span")
+    @FindBy(css = "button[data-test-id='header-member-menu-logout']/span")
     private WebElement btnLogout;
 
-    @FindBy(xpath = "//button[@*='header-member-menu-button']")
+    @FindBy(css = "button[data-test-id='header-member-menu-button']")
     private WebElement btnMenu;
 
-    public BoardsPage (){
+    /**
+     * Constructor.
+     */
+    public BoardsPage() {
         super();
     }
 
+    /**
+     * Waits to element of page is loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
         WebElementUtil.waitUntilElementIsLoaded(btnMenu);
     }
 
+    /**
+     * Gets WebElement logout button.
+     * @return btnLogout
+     */
     public WebElement getBtnLogout() {
         return btnLogout;
     }
 
+    /**
+     * Clicks Menu button.
+     */
     public void clickBtnMenu() {
         WebElementUtil.clickElement(btnMenu);
     }

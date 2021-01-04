@@ -6,23 +6,37 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class CreateBoardPage extends BasePage {
-    @FindBy(xpath = "//button[@*='header-boards-menu-button']")
+    @FindBy(css = "button[data-test-id='header-boards-menu-button']")
     private WebElement buttonBoards;
+
     @FindBy(xpath = "//button[contains(text(),'Create new board')]")
     private WebElement linkCreateBoard;
-    @FindBy(xpath = "//input[@*='create-board-title-input']")
+
+    @FindBy(css = "input[data-test-id='create-board-title-input']")
     private WebElement textBoxNameBoard;
-    @FindBy(xpath = "//button[@*='create-board-submit-button']")
+
+    @FindBy(css = "button[data-test-id='create-board-submit-button']")
     private WebElement buttonCreateBoard;
 
+    /**
+     * Constructor.
+     */
     public CreateBoardPage() {
         super();
     }
 
+    /**
+     * Gets title of page.
+     * @return title of page
+     */
     public String getTitle() {
         return WebDriverManager.getInstance().getWebDriver().getTitle();
     }
 
+    /**
+     * Create board by clicking create board button.
+     * @param name
+     */
     public void clickButtonCreateBoard(final String name) {
         WebElementUtil.clickElement(buttonBoards);
         WebElementUtil.clickElement(linkCreateBoard);

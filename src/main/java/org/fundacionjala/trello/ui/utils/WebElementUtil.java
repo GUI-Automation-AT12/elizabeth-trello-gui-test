@@ -21,8 +21,6 @@ public final class WebElementUtil {
      * @param text
      */
     public static void setElement(final WebElement webElement, final String text) {
-        WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
-        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
         webElement.clear();
         webElement.sendKeys(text);
     }
@@ -44,8 +42,7 @@ public final class WebElementUtil {
      * @param webElement
      */
     public static void clickElement(final WebElement webElement) {
-       WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
-       webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement)).click();
+       webElement.click();
     }
 
     /**
@@ -64,6 +61,6 @@ public final class WebElementUtil {
      */
     public static void waitUntilElementIsLoaded(final WebElement webElement) {
         WebDriverWait webDriverWait = WebDriverManager.getInstance().getWebDriverWait();
-        webDriverWait.until(ExpectedConditions.visibilityOf(webElement));
+        webDriverWait.until(ExpectedConditions.elementToBeClickable(webElement));
     }
 }

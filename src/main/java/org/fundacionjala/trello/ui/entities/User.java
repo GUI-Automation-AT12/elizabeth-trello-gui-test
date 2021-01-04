@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 public class User {
     private String username;
     private String bio;
+    private String typeUser;
     private Set<String> updatedFields = new HashSet<>();
 
     /**
@@ -28,6 +29,22 @@ public class User {
      */
     public String getUsername() {
         return username;
+    }
+
+    /**
+     * Sets UserName to a User.
+     * @param newTypeUser
+     */
+    public void setTypeUser(final String newTypeUser) {
+        this.typeUser = newTypeUser;
+    }
+
+    /**
+     * Gets the UserName from a User.
+     * @return UserName
+     */
+    public String getTypeUser() {
+        return typeUser;
     }
 
     /**

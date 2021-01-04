@@ -23,7 +23,7 @@ public class NavigationSteps {
      * @throws MalformedURLException
      */
     @When("^I navigate to (.*?) Page$")
-    public void iNavigateToMyProfilePage(final String pageName) throws MalformedURLException {
+    public void navigateToPage(final String pageName) throws MalformedURLException {
         PageTransporter.navigateToPage(pageName);
     }
 }

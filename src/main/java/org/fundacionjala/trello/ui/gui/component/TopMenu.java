@@ -1,37 +1,42 @@
 package org.fundacionjala.trello.ui.gui.component;
 
 import org.fundacionjala.trello.ui.gui.pages.BasePage;
+import org.fundacionjala.trello.ui.gui.popups.AccountPopUp;
+import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
 public class TopMenu extends BasePage {
 
-    @FindBy(css = "a[data-test-id='header-home-button]")
+    @FindBy(css = "a[data-test-id='header-home-button']")
     private WebElement btnHome;
 
-    @FindBy(css = "input[data-test-id='header-search-input]")
+    @FindBy(css = "input[data-test-id='header-search-input']")
     private WebElement searchInput;
 
     @FindBy(css = "a[aria-label='Back to Home']")
     private WebElement linkHome;
 
-    @FindBy(css = "button[data-test-id='header-create-button]")
+    @FindBy(css = "button[data-test-id='header-create-button']")
     private WebElement btnCreate;
 
-    @FindBy(css = "button[data-test-id='header-info-button]")
+    @FindBy(css = "button[data-test-id='header-info-button']")
     private WebElement btnInfo;
 
-    @FindBy(css = "button[data-test-id='header-notification-button]")
+    @FindBy(css = "button[data-test-id='header-notification-button']")
     private WebElement btnNotification;
 
-    @FindBy(css = "button[data-test-id='header-member-menu-button]")
+    @FindBy(css = "button[data-test-id='header-member-menu-button']")
     private WebElement btnMemberMenu;
+
+    private AccountPopUp accountPopUp;
 
     /**
      * Constructor.
      */
     public TopMenu() {
         super();
+        accountPopUp = new AccountPopUp();
     }
 
     /**
@@ -88,5 +93,14 @@ public class TopMenu extends BasePage {
      */
     public WebElement getBtnMemberMenu() {
         return btnMemberMenu;
+    }
+
+    /**
+     * Gets WebElement MemberMenu button.
+     * @return btnMemberMenu
+     */
+    public AccountPopUp clickBtnMemberMenu() {
+        WebElementUtil.clickElement(btnMemberMenu);
+        return accountPopUp;
     }
 }

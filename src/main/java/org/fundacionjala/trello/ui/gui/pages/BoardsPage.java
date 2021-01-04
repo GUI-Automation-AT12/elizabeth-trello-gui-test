@@ -1,5 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
+import org.fundacionjala.trello.ui.gui.component.TopMenu;
 import org.fundacionjala.trello.ui.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -12,11 +13,14 @@ public class BoardsPage extends BasePage {
     @FindBy(css = "button[data-test-id='header-member-menu-button']")
     private WebElement btnMenu;
 
+    private TopMenu topMenu;
+
     /**
      * Constructor.
      */
     public BoardsPage() {
         super();
+        topMenu = new TopMenu();
     }
 
     /**
@@ -39,5 +43,13 @@ public class BoardsPage extends BasePage {
      */
     public void clickBtnMenu() {
         WebElementUtil.clickElement(btnMenu);
+    }
+
+    /**
+     * Gets WebElement Top Menu.
+     * @return btnLogout
+     */
+    public TopMenu getTopMenu() {
+        return topMenu;
     }
 }

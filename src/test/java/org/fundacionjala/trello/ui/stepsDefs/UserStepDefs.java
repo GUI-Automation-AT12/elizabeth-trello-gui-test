@@ -3,14 +3,13 @@ package org.fundacionjala.trello.ui.stepsDefs;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.fundacionjala.trello.ui.config.Environment;
+import org.fundacionjala.trello.ui.config.Context;
+import org.fundacionjala.trello.ui.config.ReaderUserFile;
 import org.fundacionjala.trello.ui.entities.User;
 import org.fundacionjala.trello.ui.gui.pages.*;
 import org.fundacionjala.trello.ui.utils.PageTransporter;
-import org.json.simple.parser.ParseException;
 import org.testng.asserts.SoftAssert;
 
-import java.io.IOException;
 import java.net.MalformedURLException;
 import java.util.Map;
 
@@ -22,20 +21,14 @@ public class UserStepDefs {
     private AtlassianLoginPage atlassianLoginPage;
     private BoardsPage boardsPage;
     private ProfilePage profilePage;
-    private final User user = new User();
+    private Context context;
 
     /**
-     * Login to Trello with valid credentials.
-     * @throws MalformedURLException
+     * Constructor.
+     * @param contextDI
      */
-    @Given("I log in Trello with valid Credentials")
-    public void iLogInTrelloWithValidCredentials() throws MalformedURLException {
-        PageTransporter.navigateToPage("login");
-        trelloLoginPage = new TrelloLoginPage();
-        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(Environment.getInstance().getUsername());
-        atlassianLoginPage.waitUntilPageObjectIsLoaded();
-        boardsPage = atlassianLoginPage.loginTrello(Environment.getInstance().getPassword());
-        boardsPage.waitUntilPageObjectIsLoaded();
+    public UserStepDefs(final Context contextDI) {
+        this.context = contextDI;
     }
 
     /**
@@ -43,12 +36,13 @@ public class UserStepDefs {
      * @param userInformation
      */
     @When("I edit My Profile with the following information")
-    public void iEditMyProfileWithTheFollowingInformation(final Map<String, String> userInformation) {
+    public void editMyProfileWithTheFollowingInformation(final Map<String, String> userInformation) {
         profilePage = new ProfilePage();
+
         //save information in the entity
-        user.processInformation(userInformation);
+        context.user.processInformation(userInformation);
         //update information by ui
-        profilePage.editUserProfile(user);
+        profilePage.editUserProfile(context.user);
     }
 
     /**
@@ -67,13 +61,14 @@ public class UserStepDefs {
     public void verifyTheUserInformationShouldBeUpdatedInMyProfileSection() {
         SoftAssert softAssert = new SoftAssert();
         //Gets information of fields edited.
-        Map<String, String> profileInfo = profilePage.getUserInformationAsAMap(user.getUpdatedFields());
+        Map<String, String> profileInfo = profilePage.getUserInformationAsAMap(context.user.getUpdatedFields());
         //Map with the getters of user
-        Map<String, String> userInfo = user.getUpdatedInfo();
+        Map<String, String> userInfo = context.user.getUpdatedInfo();
         profileInfo.forEach((field, value) ->
                 softAssert.assertEquals(value,userInfo.get(field))
         );
-        softAssert.assertTrue(profilePage.getHeaderTextContent().getText().contains(user.getUsername()));
+        profilePage.waitUntilPageObjectIsLoaded();
+        softAssert.assertTrue(profilePage.getHeaderTextContent().getText().contains(context.user.getUsername()));
         softAssert.assertAll();
     }
 }

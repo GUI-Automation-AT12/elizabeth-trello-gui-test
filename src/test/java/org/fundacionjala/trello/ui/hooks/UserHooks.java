@@ -1,17 +1,18 @@
 package org.fundacionjala.trello.ui.hooks;
 
 import io.cucumber.java.After;
-import org.fundacionjala.trello.core.WebDriverManager;
-import org.fundacionjala.trello.ui.config.Context;
-import org.fundacionjala.trello.ui.config.ReaderUserFile;
+import org.fundacionjala.core.ui.WebDriverManager;
+import org.fundacionjala.trello.ui.Context.Context;
+import org.fundacionjala.trello.ui.utils.ReaderUserFile;
 import org.fundacionjala.trello.ui.gui.pages.AtlassianLoginPage;
 import org.fundacionjala.trello.ui.gui.pages.BoardsPage;
 import org.fundacionjala.trello.ui.gui.pages.ProfilePage;
 import org.fundacionjala.trello.ui.gui.pages.TrelloLoginPage;
-import org.fundacionjala.trello.ui.utils.PageTransporter;
+import org.fundacionjala.trello.ui.gui.PageTransporter;
 import org.json.simple.parser.ParseException;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -35,17 +36,18 @@ public class UserHooks {
      * @throws IOException
      * @throws ParseException
      */
-    @After(value = "@resetUserInformation", order = 1)
-    public void restoreUserProfile() throws IOException, ParseException {
+    @After(value = "@ResetUserInformation", order = 1)
+    public void restoreUserProfile() throws MalformedURLException {
         Map<String, String> userInformation = new HashMap<>();
-        userInformation.put("username", ReaderUserFile.getUsername(context.user.getTypeUser()));
-        userInformation.put("bio", ReaderUserFile.getBio(context.user.getTypeUser()));
+        userInformation.put("username", ReaderUserFile.getInstance().getUsername(context.user.getTypeUser()));
+        userInformation.put("bio", ReaderUserFile.getInstance().getBio(context.user.getTypeUser()));
         context.user.processInformation(userInformation);
+
         PageTransporter.navigateToPage("login");
         trelloLoginPage = new TrelloLoginPage();
-        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getEmail(context.user.getTypeUser()));
+        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getInstance().getEmail(context.user.getTypeUser()));
         atlassianLoginPage.waitUntilPageObjectIsLoaded();
-        boardsPage = atlassianLoginPage.loginTrello(ReaderUserFile.getPassword(context.user.getTypeUser()));
+        boardsPage = atlassianLoginPage.loginTrello(ReaderUserFile.getInstance().getPassword(context.user.getTypeUser()));
         boardsPage.waitUntilPageObjectIsLoaded();
         profilePage = boardsPage.getTopMenu().clickBtnMemberMenu().getProfilePage();
         profilePage.editUserProfile(context.user);

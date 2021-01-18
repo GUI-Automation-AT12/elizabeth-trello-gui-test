@@ -1,7 +1,0 @@
-{
-  "browser" : {
-    "name": "chrome",
-    "implicitTime": "20",
-    "explicitTime": "30"
-  }
-}

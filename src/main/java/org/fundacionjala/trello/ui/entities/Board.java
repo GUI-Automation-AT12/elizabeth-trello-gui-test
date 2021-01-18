@@ -1,7 +1,6 @@
 package org.fundacionjala.trello.ui.entities;
 
-import org.fundacionjala.trello.core.utils.IdGenerator;
-
+import org.fundacionjala.core.utils.IdGenerator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -10,6 +9,9 @@ import java.util.function.Supplier;
 
 public class Board {
     private String name;
+    private String idBoard;
+    private String team;
+    private String privacy;
     private Set<String> updatedFields = new HashSet<>();
 
     /**
@@ -18,7 +20,7 @@ public class Board {
      */
     public void setName(final String boardName) {
         this.name = boardName.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
-        this.name = boardName.replaceAll(" ", "");
+        this.name = name.replaceAll(" ", "");
     }
 
     /**
@@ -30,24 +32,92 @@ public class Board {
     }
 
     /**
+     * Gets the id from a board.
+     * @return id
+     */
+    public String getIdBoard() {
+        return idBoard;
+    }
+
+    /**
+     * Sets id a board.
+     * @param id
+     */
+    public void setIdBoard(String id) {
+        this.idBoard = id;
+    }
+
+    /**
+     * Gets team of a board.
+     * @return team
+     */
+    public String getTeam() {
+        return team;
+    }
+
+    /**
+     * Sets teams of a board.
+     * @param team
+     */
+    public void setTeam(String team) {
+        this.team = team;
+    }
+
+    /**
+     * Gets privacy of a board.
+     * @return privacy
+     */
+    public String getPrivacy() {
+        return privacy;
+    }
+
+    /**
+     * Sets privacy of a board.
+     * @param privacy
+     */
+    public void setPrivacy(String privacy) {
+        this.privacy = privacy;
+    }
+
+    /**
+     * Gets updated fields.
+     * @return updatedFields Map
+     */
+    public Set<String> getUpdatedFields() {
+        return updatedFields;
+    }
+
+    /**
+     * Sets Map of updated fields.
+     * @param updatedFields
+     */
+    public void setUpdatedFields(Set<String> updatedFields) {
+        this.updatedFields = updatedFields;
+    }
+
+    /**
      * Composes strategy setter map.
+     * Sets the attributes of a board and save data in a Map.
      * @param boardInformation
      * @return HashMap
      */
     private HashMap<String, Runnable> composeStrategySetter(final Map<String, String> boardInformation) {
         HashMap<String, Runnable> strategyMap = new HashMap<>();
-        strategyMap.put("Name", () -> setName(boardInformation.get("Name")));
+        strategyMap.put("name", () -> setName(boardInformation.get("name")));
+        strategyMap.put("team", () -> setTeam(boardInformation.get("team")));
+        strategyMap.put("privacy", () -> setPrivacy(boardInformation.get("privacy")));
+        System.out.println(strategyMap.toString());
         return strategyMap;
     }
 
     /**
      * Process all information stored for a Board as a map.
-     * @param userInformation
+     * @param boardInformation
      */
-    public void processInformation(final Map<String, String> userInformation) {
-        HashMap<String, Runnable> strategyMap = composeStrategySetter(userInformation);
-        userInformation.keySet().forEach(key -> strategyMap.get(key).run());
-        updatedFields = userInformation.keySet();
+    public void processInformation(final Map<String, String> boardInformation) {
+        HashMap<String, Runnable> strategyMap = composeStrategySetter(boardInformation);
+        boardInformation.keySet().forEach(key -> strategyMap.get(key).run());
+        updatedFields = boardInformation.keySet();
     }
 
     /**
@@ -56,7 +126,9 @@ public class Board {
      */
     private HashMap<String, Supplier<String>> composeStrategyGetter() {
         HashMap<String, Supplier<String>> strategyMap = new HashMap<>();
-        strategyMap.put("Name", () -> getName());
+        strategyMap.put("name", () -> getName());
+        strategyMap.put("team", () -> getTeam());
+        strategyMap.put("privacy", () -> getPrivacy());
         return strategyMap;
     }
 

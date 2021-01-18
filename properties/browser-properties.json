@@ -1,0 +1,14 @@
+{
+  "chrome" : {
+    "implicitTime": "30",
+    "explicitTime": "40"
+  },
+  "firefox" : {
+    "implicitTime": "40",
+    "explicitTime": "50"
+  },
+  "edge" : {
+    "implicitTime": "40",
+    "explicitTime": "50"
+  }
+}

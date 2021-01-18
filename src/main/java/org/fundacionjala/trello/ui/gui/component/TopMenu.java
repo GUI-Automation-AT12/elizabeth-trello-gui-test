@@ -1,8 +1,10 @@
 package org.fundacionjala.trello.ui.gui.component;
 
 import org.fundacionjala.trello.ui.gui.pages.BasePage;
+import org.fundacionjala.trello.ui.gui.popups.CreateBoardPopUp;
 import org.fundacionjala.trello.ui.gui.popups.AccountPopUp;
-import org.fundacionjala.trello.ui.utils.WebElementUtil;
+import org.fundacionjala.trello.ui.gui.popups.CreateTeamPopUp;
+import org.fundacionjala.core.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -17,9 +19,6 @@ public class TopMenu extends BasePage {
     @FindBy(css = "a[aria-label='Back to Home']")
     private WebElement linkHome;
 
-    @FindBy(css = "button[data-test-id='header-create-button']")
-    private WebElement btnCreate;
-
     @FindBy(css = "button[data-test-id='header-info-button']")
     private WebElement btnInfo;
 
@@ -29,6 +28,17 @@ public class TopMenu extends BasePage {
     @FindBy(css = "button[data-test-id='header-member-menu-button']")
     private WebElement btnMemberMenu;
 
+    //CreateComponentPopup
+    @FindBy(css = "button[data-test-id='header-create-menu-button']")
+    private WebElement btnCreate;
+
+    @FindBy(css = "button[data-test-id='header-create-board-button']")
+    private WebElement btnCreateBoard;
+
+    @FindBy(css = "button[data-test-id='header-create-team-button']")
+    private WebElement btnCreateTeam;
+
+    private CreateBoardPopUp createBoardPage;
     private AccountPopUp accountPopUp;
 
     /**
@@ -36,6 +46,7 @@ public class TopMenu extends BasePage {
      */
     public TopMenu() {
         super();
+        createBoardPage = new CreateBoardPopUp();
         accountPopUp = new AccountPopUp();
     }
 
@@ -102,5 +113,25 @@ public class TopMenu extends BasePage {
     public AccountPopUp clickBtnMemberMenu() {
         WebElementUtil.clickElement(btnMemberMenu);
         return accountPopUp;
+    }
+
+    /**
+     * Gets WebElement MemberMenu button.
+     * @return btnMemberMenu
+     */
+    public CreateBoardPopUp getCreateBoardPage() {
+        WebElementUtil.clickElement(btnCreate);
+        WebElementUtil.clickElement(btnCreateBoard);
+        return new CreateBoardPopUp();
+    }
+
+    /**
+     * Gets WebElement MemberMenu button.
+     * @return btnMemberMenu
+     */
+    public CreateTeamPopUp getCreateTeamPage() {
+        WebElementUtil.clickElement(btnCreate);
+        WebElementUtil.clickElement(btnCreateTeam);
+        return new CreateTeamPopUp();
     }
 }

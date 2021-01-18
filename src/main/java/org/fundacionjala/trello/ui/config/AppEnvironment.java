@@ -1,15 +1,14 @@
 package org.fundacionjala.trello.ui.config;
 
-import org.fundacionjala.trello.core.utils.ReaderJSONFile;
+import org.fundacionjala.core.utils.ReaderPropertiesFile;
 
 public final class AppEnvironment {
-    private static final String PATH = "properties/App-properties.json";
-    private static final String ALIAS = "app";
+    private static final String PATH = "gradle.properties";
     private static AppEnvironment singleInstance;
-    private ReaderJSONFile reader;
+    private ReaderPropertiesFile reader;
 
     private AppEnvironment() {
-        reader = new ReaderJSONFile(PATH);
+        reader = new ReaderPropertiesFile(PATH);
     }
 
     /**
@@ -24,27 +23,11 @@ public final class AppEnvironment {
     }
 
     /**
-     * Gets the BaseUrl from file.
-     * @return base url
+     * Gets the BaseUrl from the file.properties.
+     * @return base url.
      */
     public String getBaseUrl() {
-        return getProperty("baseUrl");
-    }
-
-    /**
-     * Gets the Username from file.
-     * @return Username
-     */
-    public String getUsername() {
-        return getProperty("username");
-    }
-
-    /**
-     * Gets the password from file.
-     * @return Password
-     */
-    public String getPassword() {
-        return getProperty("password");
+        return reader.getEnvProperty("baseUrl");
     }
 
     /**
@@ -52,10 +35,14 @@ public final class AppEnvironment {
      * @return cucumberThreadCount
      */
     public String getCucumberThreadCount() {
-        return getProperty("cucumberThreadCount");
+        return reader.getEnvProperty("cucumberThreadCount");
     }
 
-    private String getProperty(final String key) {
-        return reader.getData(ALIAS, key);
+    /**
+     * Gets ilterTags value.
+     * @return filterTags value.
+     */
+    public String getFilterTags() {
+        return reader.getEnvProperty("filterTags");
     }
 }

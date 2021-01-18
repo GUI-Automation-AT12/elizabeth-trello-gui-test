@@ -3,20 +3,26 @@ package org.fundacionjala.trello.ui.runner;
 
 import io.cucumber.testng.AbstractTestNGCucumberTests;
 import io.cucumber.testng.CucumberOptions;
-import org.fundacionjala.trello.ui.config.Environment;
 import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.DataProvider;
 
+/**
+ * Cucumber TestNG runner class.
+ */
 @CucumberOptions(
-        plugin = {"pretty"},
         features = {"src/test/resources/features"},
-        glue = {"org.fundacionjala.trello.ui"}
+        glue = {"org.fundacionjala.trello.ui.stepsDefs"},
+        plugin = {"pretty",
+                  "html:test-output",
+                  "json:target/cucumber-report/cucumber.json"},
+        tags = "not @Skipped"
 )
 
 public final class TestRunner extends AbstractTestNGCucumberTests {
+
     @Override
-    @DataProvider(parallel = true)
+    @DataProvider(parallel = false)
     public Object[][] scenarios() {
         return super.scenarios();
     }
@@ -25,7 +31,7 @@ public final class TestRunner extends AbstractTestNGCucumberTests {
      */
     @BeforeTest
     public void beforeAllScenarios() {
-        System.setProperty("dataproviderthreadcount", Environment.getInstance().getCucumberThreadCount());
+        //System.setProperty("dataproviderthreadcount", ApiEnvironment.getInstance().getCucumberThreadCount());
     }
 
     /**
@@ -33,6 +39,6 @@ public final class TestRunner extends AbstractTestNGCucumberTests {
      */
     @AfterTest
     public void afterAllScenarios() {
-        // Code executed after features execution.
+
     }
 }

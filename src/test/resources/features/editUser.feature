@@ -4,7 +4,7 @@ Feature: Edit user
   Background:
     Given I log in Trello with Editable user credentials
 
-  @functional @resetUserInformation
+  @Skipped @Functional @ResetUserInformation
   Scenario: Edit user's information in My Profile section
     When I navigate to My Profile Page
       And I edit My Profile with the following information

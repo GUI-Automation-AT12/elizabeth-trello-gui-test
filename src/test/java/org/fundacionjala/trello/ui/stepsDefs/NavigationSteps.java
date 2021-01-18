@@ -2,7 +2,7 @@ package org.fundacionjala.trello.ui.stepsDefs;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.When;
-import org.fundacionjala.trello.ui.utils.PageTransporter;
+import org.fundacionjala.trello.ui.gui.PageTransporter;
 
 import java.net.MalformedURLException;
 
@@ -26,4 +26,6 @@ public class NavigationSteps {
     public void navigateToPage(final String pageName) throws MalformedURLException {
         PageTransporter.navigateToPage(pageName);
     }
+
+
 }

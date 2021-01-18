@@ -1,10 +1,12 @@
 plugins {
     id 'java'
     id 'application'
+    id "io.qameta.allure" version "2.8.1"
 }
 apply plugin: 'checkstyle'
 apply plugin: 'pmd'
 apply plugin: 'jacoco'
+apply plugin: "io.qameta.allure"
 
 group 'org.trello'
 version '1.0'
@@ -19,14 +21,12 @@ dependencies {
 
     compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
     compile group: 'com.googlecode.json-simple', name: 'json-simple', version: '1.1.1'
-    compile group: 'org.seleniumhq.selenium', name: 'selenium-java', version: '3.141.59'
     compile group: 'io.github.bonigarcia', name: 'webdrivermanager', version: '3.8.0'
     compile group: 'com.google.guava', name: 'guava', version: '30.1-jre'
     testCompile group: 'junit', name: 'junit', version: '4.12'
     implementation group: 'io.rest-assured', name: 'rest-assured', version: '4.3.2'
     testImplementation group: 'io.cucumber', name: 'cucumber-java', version: '5.7.0'
     testImplementation group: 'io.cucumber', name: 'cucumber-testng', version: '5.7.0'
-    testImplementation 'io.cucumber:cucumber-junit:5.7.0'
     testImplementation group: 'io.cucumber', name: 'cucumber-picocontainer', version: '5.7.0'
     testImplementation group: 'org.testng', name: 'testng', version: '7.3.0'
     compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.14.0'
@@ -51,10 +51,6 @@ tasks.withType(Pmd) {
     }
 }
 
-application {
-    mainClassName = 'Trello.App'
-}
-
 configurations {
     cucumberRuntime {
         extendsFrom testImplementation
@@ -72,10 +68,52 @@ check.dependsOn jacocoTestReport
 
 test {
     useTestNG()
-    exclude 'org/fundacionjala/trello/runner/**'
-    include 'org/fundacionjala/trello/unit/**'
-    systemProperty 'usedefaultlisteners', false
-    testLogging {
-        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+//    include 'org/fundacionjala/trello/ui/runner/**'
+//    exclude 'org/fundacionjala/trello/ui/unit/**'
+//    systemProperty 'usedefaultlisteners', false
+//    testLogging {
+//        events 'PASSED', 'STARTED', 'FAILED', 'SKIPPED'
+//    }
+}
+
+allure {
+    version = '2.8.1'
+    autoconfigure = true
+    aspectjweaver = true
+    allureJavaVersion = '2.13.6'
+}
+
+application {
+    // Define the main class for the application.
+    mainClassName = 'Trello.App'
+}
+
+task executeBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-Dcucumber.filter.tags=' + filterTags]
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+        jvmArgs = ['-Dbrowser=' + browser]
+        jvmArgs = ['-DbaseUrl=' + baseUrl]
     }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+    finalizedBy 'allureReport'
+}
+
+task reExecuteBDDTests(type: Test) {
+    useTestNG()
+    options {
+        useDefaultListeners = false
+        jvmArgs = ['-Dcucumber.plugin=io.qameta.allure.cucumber6jvm.AllureCucumber6Jvm']
+        jvmArgs = ['-Dcucumber.plugin=rerun:build/target/rerun.txt']
+        jvmArgs = ['-Dcucumber.features=@build/target/rerun.txt']
+        jvmArgs = ['-DcucumberThreadCount=' + cucumberThreadCount]
+    }
+    testLogging.showStandardStreams = true
+    scanForTestClasses = false
+    finalizedBy 'allureReport'
 }

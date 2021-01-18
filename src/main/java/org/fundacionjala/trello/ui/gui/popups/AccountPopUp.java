@@ -2,7 +2,7 @@ package org.fundacionjala.trello.ui.gui.popups;
 
 import org.fundacionjala.trello.ui.gui.pages.BasePage;
 import org.fundacionjala.trello.ui.gui.pages.ProfilePage;
-import org.fundacionjala.trello.ui.utils.WebElementUtil;
+import org.fundacionjala.core.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 

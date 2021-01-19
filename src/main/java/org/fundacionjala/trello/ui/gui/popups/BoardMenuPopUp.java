@@ -17,6 +17,9 @@ public class BoardMenuPopUp extends BasePage {
 
     private MessageClosePage messageCloseBoardPage;
 
+    /**
+     * Constructor.
+     */
     public BoardMenuPopUp() {
         super();
     }
@@ -43,16 +46,20 @@ public class BoardMenuPopUp extends BasePage {
     }
 
     /**
-     * Closes board
+     * Closes board.
      * @return MessageClosePage
      */
-    public MessageClosePage CloseBoard() {
+    public MessageClosePage closeBoard() {
         clickLinkMore();
         clickLinkCloseBoard();
         clickBtnCloseMessageConfirm();
         return new MessageClosePage();
     }
 
+    /**
+     *
+     * @return link.
+     */
     public WebElement getLinkMore() {
         return linkMore;
     }

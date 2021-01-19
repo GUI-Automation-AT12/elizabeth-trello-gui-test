@@ -39,18 +39,18 @@ public class UserHooks {
     @After(value = "@ResetUserInformation", order = 1)
     public void restoreUserProfile() throws MalformedURLException {
         Map<String, String> userInformation = new HashMap<>();
-        userInformation.put("username", ReaderUserFile.getInstance().getUsername(context.user.getTypeUser()));
-        userInformation.put("bio", ReaderUserFile.getInstance().getBio(context.user.getTypeUser()));
-        context.user.processInformation(userInformation);
+        userInformation.put("username", ReaderUserFile.getInstance().getUsername(context.getUser().getTypeUser()));
+        userInformation.put("bio", ReaderUserFile.getInstance().getBio(context.getUser().getTypeUser()));
+        context.getUser().processInformation(userInformation);
 
         PageTransporter.navigateToPage("login");
         trelloLoginPage = new TrelloLoginPage();
-        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getInstance().getEmail(context.user.getTypeUser()));
+        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getInstance().getEmail(context.getUser().getTypeUser()));
         atlassianLoginPage.waitUntilPageObjectIsLoaded();
-        boardsPage = atlassianLoginPage.loginTrello(ReaderUserFile.getInstance().getPassword(context.user.getTypeUser()));
+        boardsPage = atlassianLoginPage.loginTrello(ReaderUserFile.getInstance().getPassword(context.getUser().getTypeUser()));
         boardsPage.waitUntilPageObjectIsLoaded();
         profilePage = boardsPage.getTopMenu().clickBtnMemberMenu().getProfilePage();
-        profilePage.editUserProfile(context.user);
+        profilePage.editUserProfile(context.getUser());
         WebDriverManager.getInstance().quit();
     }
 }

@@ -9,6 +9,9 @@ public class MessageDeletePage extends BasePage {
     @FindBy(xpath = "//h1[text()='Board not found.']")
     private WebElement message;
 
+    /**
+     * Constructor.
+     */
     public MessageDeletePage() {
         super();
     }

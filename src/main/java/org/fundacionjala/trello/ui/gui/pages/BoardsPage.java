@@ -20,8 +20,11 @@ public class BoardsPage extends BasePage {
     private List<WebElement> boards = WebDriverManager.getInstance()
                                                     .getWebDriver().findElements(By.className("board-tile"));
     private List<WebElement> teams = WebDriverManager.getInstance().getWebDriver()
-                                                     .findElements(By.cssSelector("li[data-test-id^='home-team-tab-section'] a"));
-
+                                                     .findElements(By.cssSelector(
+                                                             "li[data-test-id^='home-team-tab-section'] a"));
+    /**
+     * Top menu.
+     */
     private TopMenu topMenu;
 
     /**
@@ -64,9 +67,10 @@ public class BoardsPage extends BasePage {
 
     /**
      * Gets WebElement.
+     * @param name
      * @return boardTile
      */
-    public BoardPage selectABoard(String name) {
+    public BoardPage selectABoard(final String name) {
         for (WebElement element: boards) {
             String urlBoard = element.getAttribute("href");
             if (urlBoard.contains(name.toLowerCase())) {
@@ -79,13 +83,13 @@ public class BoardsPage extends BasePage {
 
     /**
      * Gets WebElement.
+     * @param name
      * @return boardTile
      */
-    public TeamPage selectATeam(String name) {
+    public TeamPage selectATeam(final String name) {
         for (WebElement element: teams) {
-            System.out.println(element.getAttribute("href"));
             String urlBoard = element.getAttribute("href");
-            if (urlBoard.contains(name.toLowerCase()+ "/home")) {
+            if (urlBoard.contains(name.toLowerCase() + "/home")) {
                 WebElementUtil.clickElement(element);
                 WebDriverManager.getInstance()
                         .getWebDriver()

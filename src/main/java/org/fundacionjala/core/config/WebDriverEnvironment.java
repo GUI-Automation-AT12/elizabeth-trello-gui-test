@@ -3,7 +3,7 @@ package org.fundacionjala.core.config;
 import org.fundacionjala.core.utils.ReaderPropertiesFile;
 
 
-public final class WebDriverEnvironment extends ReaderPropertiesFile{
+public final class WebDriverEnvironment extends ReaderPropertiesFile {
     private static final String PATH = "gradle.properties";
     private static WebDriverEnvironment singleInstance = new WebDriverEnvironment();
 

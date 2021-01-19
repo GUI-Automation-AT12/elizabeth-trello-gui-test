@@ -34,8 +34,8 @@ public class BackgroundStepDefs {
      */
     @Given("^I log in Trello with (.*?) user credentials$")
     public void logInTrelloWithValidCredentials(final String typeUser) throws MalformedURLException {
-        context.user = new User();
-        context.user.setTypeUser(typeUser);
+        context.setUser(new User());
+        context.getUser().setTypeUser(typeUser);
         PageTransporter.navigateToPage("login");
         trelloLoginPage = new TrelloLoginPage();
         atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getInstance().getEmail(typeUser));

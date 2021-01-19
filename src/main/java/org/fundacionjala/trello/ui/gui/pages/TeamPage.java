@@ -4,7 +4,7 @@ import org.fundacionjala.core.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-public class TeamPage extends BasePage{
+public class TeamPage extends BasePage {
 
     @FindBy(css = "div.js-current-details h1")
     private WebElement teamName;
@@ -27,6 +27,9 @@ public class TeamPage extends BasePage{
     @FindBy(css = "a[data-tab='businessClass']")
     private WebElement businessClassTab;
 
+    /**
+     * Constructor.
+     */
     public TeamPage() {
         super();
     }
@@ -56,6 +59,7 @@ public class TeamPage extends BasePage{
     }
     /**
      * Clicks Edit button.
+     * @return page
      */
     public EditTeamPage clickBtnEditTeam() {
         WebElementUtil.clickElement(btnEditTeam);

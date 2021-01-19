@@ -43,7 +43,7 @@ public class Board {
      * Sets id a board.
      * @param id
      */
-    public void setIdBoard(String id) {
+    public void setIdBoard(final String id) {
         this.idBoard = id;
     }
 
@@ -57,10 +57,10 @@ public class Board {
 
     /**
      * Sets teams of a board.
-     * @param team
+     * @param newteam
      */
-    public void setTeam(String team) {
-        this.team = team;
+    public void setTeam(final String newteam) {
+        this.team = newteam;
     }
 
     /**
@@ -73,10 +73,10 @@ public class Board {
 
     /**
      * Sets privacy of a board.
-     * @param privacy
+     * @param newprivacy
      */
-    public void setPrivacy(String privacy) {
-        this.privacy = privacy;
+    public void setPrivacy(final String newprivacy) {
+        this.privacy = newprivacy;
     }
 
     /**
@@ -89,10 +89,10 @@ public class Board {
 
     /**
      * Sets Map of updated fields.
-     * @param updatedFields
+     * @param fields
      */
-    public void setUpdatedFields(Set<String> updatedFields) {
-        this.updatedFields = updatedFields;
+    public void setUpdatedFields(final Set<String> fields) {
+        this.updatedFields = fields;
     }
 
     /**

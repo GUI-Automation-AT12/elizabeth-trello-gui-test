@@ -22,6 +22,9 @@ public class BoardPage extends BasePage {
     @FindBy(css = "a.mod-show-menu")
     private WebElement btnMenu;
 
+    /**
+     * Constructor.
+     */
     public BoardPage() {
         super();
     }
@@ -64,8 +67,9 @@ public class BoardPage extends BasePage {
      */
     public BoardMenuPopUp showBoardMenu() {
         BoardMenuPopUp boardMenuPopUp = new BoardMenuPopUp();
-        if (!boardMenuPopUp.getLinkMore().isDisplayed())
+        if (!boardMenuPopUp.getLinkMore().isDisplayed()) {
             WebElementUtil.clickElement(btnMenu);
+        }
         return boardMenuPopUp;
     }
 }

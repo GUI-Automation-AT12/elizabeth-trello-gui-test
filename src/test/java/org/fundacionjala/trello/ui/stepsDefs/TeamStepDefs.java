@@ -38,12 +38,12 @@ public class TeamStepDefs {
      */
     @When("I create a team with the following information")
     public void createATeamWithTheFollowingInformation(final Map<String, String> teamInformation) {
-        context.team = new Team();
+        context.setTeam(new Team());
         //context.team.setMembers(teamInformation.get("members"));
-        context.team.processInformation(teamInformation);
+        context.getTeam().processInformation(teamInformation);
         createTeamPopUp = boardsPage.getTopMenu().getCreateTeamPage();
         createTeamPopUp.waitUntilPageObjectIsLoaded();
-        teamPage = createTeamPopUp.createATeam(context.team);
+        teamPage = createTeamPopUp.createATeam(context.getTeam());
     }
 
     /**
@@ -52,8 +52,8 @@ public class TeamStepDefs {
     @Then("The team name should be displayed on Team Page")
     public void verifyBoardNameIsDisplayed() {
         teamPage.waitUntilPageObjectIsLoaded();
-        String expectedName = context.team.getTeamName();
-        context.team.setId(WebDriverManager.getInstance().getWebDriver().getCurrentUrl());
+        String expectedName = context.getTeam().getTeamName();
+        context.getTeam().setId(WebDriverManager.getInstance().getWebDriver().getCurrentUrl());
         String actualName = teamPage.getTeamNameCreated();
         Assert.assertEquals(actualName, expectedName);
     }
@@ -72,7 +72,7 @@ public class TeamStepDefs {
     @When("I select a specific team")
     public void selectASpecificTeam() {
         boardsPage.waitUntilPageObjectIsLoaded();
-        teamPage = boardsPage.selectATeam(context.team.getShortName());
+        teamPage = boardsPage.selectATeam(context.getTeam().getShortName());
         teamPage.waitUntilPageObjectIsLoaded();
     }
 
@@ -80,17 +80,17 @@ public class TeamStepDefs {
     public void editTheTeamInformation(final Map<String, String> teamInformation) {
         EditTeamPage editTeamPage = teamPage.clickBtnEditTeam();
         //save information in the entity
-        context.team.processInformation(teamInformation);
+        context.getTeam().processInformation(teamInformation);
         //update information by ui
-        teamPage = editTeamPage.editATeam(context.team);
+        teamPage = editTeamPage.editATeam(context.getTeam());
     }
 
     @Then("The team name should be updated on Team Page")
     public void verifyTheTeamSNameShouldBeUpdated() {
         teamPage.waitUntilPageObjectIsLoaded();
-        String expectedName = context.team.getTeamName();
+        String expectedName = context.getTeam().getTeamName();
         //context.team.setId(context.team.getShortName());
-        System.out.println(context.team.getId());
+        System.out.println(context.getTeam().getId());
         String actualName = teamPage.getTeamNameCreated();
         Assert.assertEquals(actualName, expectedName);
     }

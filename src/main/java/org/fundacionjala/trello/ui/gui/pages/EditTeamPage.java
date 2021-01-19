@@ -12,100 +12,132 @@ import java.util.Set;
 import java.util.function.Supplier;
 
 public class EditTeamPage extends BasePage {
-    @FindBy( id = "displayName")
-    WebElement name;
+    @FindBy(id = "displayName")
+    private WebElement name;
 
     @FindBy(id = "name")
-    WebElement shortName;
+    private WebElement shortName;
 
     @FindBy(id = "website")
-    WebElement website;
+    private WebElement website;
 
     @FindBy(id = "desc")
-    WebElement description;
+    private WebElement description;
 
     @FindBy(css = "form[id='organization-detail-form'] button[type=\"submit\"]")
-    WebElement submitButton;
+    private WebElement submitButton;
 
     @FindBy(css = "form[id='organization-detail-form'] button[type=\"button\"]")
-    WebElement cancelButton;
+    private WebElement cancelButton;
 
     @FindBy(xpath = "//input[@id='teamTypeSelect']/parent::div/parent::div/parent::div")
-    WebElement dropdown;
+    private WebElement dropdown;
 
     private String type;
     private String typeOfTeam = "//*[contains(text(),'%s')]";
 
+    /**
+     * Constructor.
+     */
     public EditTeamPage() {
         super();
     }
 
     /**
      * set name.
+     * @param newName
      */
-    private void setName(final String newName){
+    private void setName(final String newName) {
         WebElementUtil.setElement(name, newName);
     }
 
     /**
      * set short name.
+     * @param newShortName
      */
-    private void setShortName(final String newShortName){
+    private void setShortName(final String newShortName) {
         WebElementUtil.setElement(this.shortName, newShortName);
     }
 
     /**
      * set website.
+     * @param newWebsite
      */
-    private void setWebsite(final String newWebsite){
+    private void setWebsite(final String newWebsite) {
         WebElementUtil.setElement(this.website, newWebsite);
     }
 
     /**
      * set description.
+     * @param newDescription
      */
-    private void setDesc(final String newDescription){
+    private void setDesc(final String newDescription) {
         WebElementUtil.setElement(this.description, newDescription);
     }
 
+    /**
+     *
+     * @return name.
+     */
     public String getName() {
         return WebElementUtil.getValue(name);
     }
 
+    /**
+     *
+     * @return short name.
+     */
     public String getShortName() {
         return WebElementUtil.getValue(shortName);
     }
 
+    /**
+     *
+     * @return website.
+     */
     public String getWebsite() {
         return WebElementUtil.getValue(website);
     }
 
+    /**
+     *
+     * @return description.
+     */
     public String getDescription() {
         return WebElementUtil.getValue(description);
     }
 
+    /**
+     *
+     * @return type
+     */
     public String getType() {
         return type;
     }
 
-    public void setType(String newType) {
+    /**
+     *
+     * @param newType
+     */
+    public void setType(final String newType) {
         this.type = newType;
     }
 
     /**
      * Selects an element from a html select tag.
-     * @param type
+     * @param newtype
      */
-    public void selectDropDownOptionByName(final String type) {
+    public void selectDropDownOptionByName(final String newtype) {
         WebElementUtil.clickElement(dropdown);
-        By dropDownTeam = By.xpath(String.format(typeOfTeam, type));
+        By dropDownTeam = By.xpath(String.format(typeOfTeam, newtype));
         WebElementUtil.clickElement(dropDownTeam);
-        setType(type);
+        setType(newtype);
     }
 
     /**
      * Sets fields with team information.
      * @param team
+     * @return page.
      */
     public TeamPage editATeam(final Team team) {
         HashMap<String, Runnable> strategyMap = composeStrategySetter(team.getUpdatedInfo());

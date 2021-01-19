@@ -59,6 +59,7 @@ public class CreateBoardPopUp extends BasePage {
 
     /**
      * Sets value of textBox.
+     * @param name
      */
     public void setTextBoxNameBoard(final String name) {
         WebElementUtil.setElement(textBoxNameBoard, name);
@@ -76,29 +77,44 @@ public class CreateBoardPopUp extends BasePage {
     /**
      * Create board by clicking create board button.
      * @param value
-     * @return webElement
      */
     public void selectValue(final String value) {
         WebElement item = WebDriverManager.getInstance()
                                              .getWebDriver()
-                                             .findElement(By.xpath("//button/span[text()="+"'" + value + "']"));
+                                             .findElement(By.xpath("//button/span[text()=" + "'" + value + "']"));
         WebElementUtil.clickElement(item);
     }
 
-    public void setTextSpanTeam(final String spanTeam) {
+    /**
+     *
+     * @param newspanTeam
+     */
+    public void setTextSpanTeam(final String newspanTeam) {
         WebElementUtil.clickElement(btnSelectTeam);
-        selectValue(spanTeam);
+        selectValue(newspanTeam);
     }
 
-    public void setTextSpanPrivacy(String spanPrivacy) {
+    /**
+     *
+     * @param newspanPrivacy
+     */
+    public void setTextSpanPrivacy(final String newspanPrivacy) {
         WebElementUtil.clickElement(btnSelectPrivacy);
-        selectValue(spanPrivacy);
+        selectValue(newspanPrivacy);
     }
 
+    /**
+     *
+     * @return text.
+     */
     public String getTextSpanTeam() {
         return WebElementUtil.getTextFromWebElement(spanTeam);
     }
 
+    /**
+     *
+     * @return text.
+     */
     public String getTextSpanPrivacy() {
         return WebElementUtil.getTextFromWebElement(spanPrivacy);
     }
@@ -110,6 +126,10 @@ public class CreateBoardPopUp extends BasePage {
         WebElementUtil.clickElement(buttonCreateBoard);
     }
 
+    /**
+     *
+     * @return text.
+     */
     public String getValueTextBoxNameBoard() {
         return WebElementUtil.getValue(textBoxNameBoard);
     }
@@ -130,6 +150,7 @@ public class CreateBoardPopUp extends BasePage {
     /**
      * Sets fields with board information.
      * @param board
+     * @return page.
      */
     public BoardPage createBoard(final Board board) {
         HashMap<String, Runnable> strategyMap = composeStrategySetter(board.getUpdatedInfo());

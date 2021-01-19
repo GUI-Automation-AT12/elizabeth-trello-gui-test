@@ -39,10 +39,10 @@ public class BoardStepDefs {
      */
     @When("I create a board with the following information")
     public void createABoardWithTheFollowingInformation(final Map<String, String> boardInformation) {
-        context.board = new Board();
+        context.setBoard(new Board());
         CreateBoardPopUp createBoardPopUp = boardsPage.getTopMenu().getCreateBoardPage();
-        context.board.processInformation(boardInformation);
-        boardPage = createBoardPopUp.createBoard(context.board);
+        context.getBoard().processInformation(boardInformation);
+        boardPage = createBoardPopUp.createBoard(context.getBoard());
     }
 
     /**
@@ -51,38 +51,38 @@ public class BoardStepDefs {
     @Then("The board name should be displayed on Board Page")
     public void verifyBoardNameIsDisplayed() {
         boardPage.waitUntilPageObjectIsLoaded();
-        String expectedName = context.board.getName();
-        context.board.setIdBoard(WebDriverManager.getInstance().getWebDriver().getCurrentUrl());
+        String expectedName = context.getBoard().getName();
+        context.getBoard().setIdBoard(WebDriverManager.getInstance().getWebDriver().getCurrentUrl());
         String actualName = boardPage.getNameBoardCreated();
         Assert.assertEquals(actualName, expectedName);
     }
 
     @Then("The board team name should be displayed on Board Page")
     public void verifyBoardTeamNameIsDisplayed() {
-        String expected = context.board.getTeam();
+        String expected = context.getBoard().getTeam();
         String actualName = boardPage.getNameTeamBoardCreated();
         Assert.assertTrue(actualName.contains(expected));
     }
 
     @Then("The board privacy should be displayed on Board Page")
     public void verifyBoardPrivacyIsDisplayed() {
-        String expected = context.board.getPrivacy();
+        String expected = context.getBoard().getPrivacy();
         String actualName = boardPage.getPrivacyBoardCreated();
         Assert.assertEquals(actualName, expected);
     }
 
     @And("I select specific board")
     public void selectSpecificBoard() {
-        System.out.println(context.board.getName());
+        System.out.println(context.getBoard().getName());
         boardsPage.waitUntilPageObjectIsLoaded();
-        boardPage = boardsPage.selectABoard(context.board.getName());
+        boardPage = boardsPage.selectABoard(context.getBoard().getName());
         boardPage.waitUntilPageObjectIsLoaded();
     }
 
     @And("I delete the board")
     public void deleteTheBoard() {
         boardMenuPopUp = boardPage.showBoardMenu();
-        messageClosePage = boardMenuPopUp.CloseBoard();
+        messageClosePage = boardMenuPopUp.closeBoard();
         messageDeletePage = messageClosePage.deleteBoard();
         messageDeletePage.waitUntilPageObjectIsLoaded();
     }

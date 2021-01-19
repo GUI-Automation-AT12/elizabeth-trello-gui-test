@@ -19,6 +19,9 @@ public class MessageClosePage extends BasePage {
     @FindBy(css = "input.js-confirm")
     private WebElement btnCloseMessageConfirm;
 
+    /**
+     * Constructor.
+     */
     public MessageClosePage() {
         super();
     }
@@ -53,7 +56,7 @@ public class MessageClosePage extends BasePage {
     }
 
     /**
-     * Closes board
+     * Closes board.
      * @return MessageClosePage
      */
     public MessageDeletePage deleteBoard() {

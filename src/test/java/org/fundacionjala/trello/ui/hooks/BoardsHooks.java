@@ -19,7 +19,7 @@ public class BoardsHooks {
      */
     @After(value = "@DeleteBoard", order = 1)
     public void deleteBoard(){
-        BoardHelper.deleteBoard(context.board);
+        BoardHelper.deleteBoard(context.getBoard());
     }
 
     /**
@@ -27,7 +27,7 @@ public class BoardsHooks {
      */
     @Before(value = "@CreateBoard", order = 0)
     public void createBoard(){
-        context.board = new Board();
-        context.board = BoardHelper.createBoard();
+        context.setBoard(new Board());
+        context.setBoard(BoardHelper.createBoard());
     }
 }

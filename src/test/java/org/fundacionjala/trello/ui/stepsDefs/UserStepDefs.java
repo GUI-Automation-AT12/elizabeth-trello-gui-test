@@ -35,9 +35,9 @@ public class UserStepDefs {
         profilePage = new ProfilePage();
 
         //save information in the entity
-        context.user.processInformation(userInformation);
+        context.getUser().processInformation(userInformation);
         //update information by ui
-        profilePage.editUserProfile(context.user);
+        profilePage.editUserProfile(context.getUser());
     }
 
     /**
@@ -56,9 +56,9 @@ public class UserStepDefs {
     public void verifyTheUserInformationShouldBeUpdatedInMyProfileSection() {
         SoftAssert softAssert = new SoftAssert();
         //Gets information of fields edited.
-        Map<String, String> profileInfo = profilePage.getUserInformationAsAMap(context.user.getUpdatedFields());
+        Map<String, String> profileInfo = profilePage.getUserInformationAsAMap(context.getUser().getUpdatedFields());
         //Map with the getters of user
-        Map<String, String> userInfo = context.user.getUpdatedInfo();
+        Map<String, String> userInfo = context.getUser().getUpdatedInfo();
         profileInfo.forEach((field, value) ->
                 softAssert.assertEquals(value,userInfo.get(field))
         );

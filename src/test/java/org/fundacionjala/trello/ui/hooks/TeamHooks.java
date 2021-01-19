@@ -18,7 +18,7 @@ public class TeamHooks {
      */
     @After(value = "@DeleteTeam", order = 3)
     public void deleteTeam(){
-        TeamHelper.deleteTeam(context.team);
+        TeamHelper.deleteTeam(context.getTeam());
     }
 
     /**
@@ -26,7 +26,7 @@ public class TeamHooks {
      */
     @Before(value = "@CreateTeam", order = 0)
     public void createTeam(){
-        context.team = new Team();
-        context.team = TeamHelper.createTeam();
+        context.setTeam(new Team());
+        context.setTeam(TeamHelper.createTeam());
     }
 }

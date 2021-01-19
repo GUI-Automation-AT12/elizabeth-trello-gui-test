@@ -32,7 +32,7 @@ public class CreateTeamPopUp extends BasePage {
     private String typeOfTeam = "//*[contains(text(),'%s')]";
 
     /**
-     * Members Team
+     * Members Team.
      */
 
 
@@ -63,6 +63,10 @@ public class CreateTeamPopUp extends BasePage {
         return WebElementUtil.getValue(teamNameTextBox);
     }
 
+    /**
+     * Select a element.
+     * @param optionName
+     */
     public void selectDropDownOptionByName(final String optionName) {
         By dropDownTeam = By.xpath(String.format(typeOfTeam, optionName));
         WebElementUtil.clickElement(dropDownTeam);
@@ -70,6 +74,7 @@ public class CreateTeamPopUp extends BasePage {
 
     /**
      * Sets value of textBox.
+     * @param name
      */
     public void setTeamNameTextBox(final String name) {
         WebElementUtil.setElement(teamNameTextBox, name);
@@ -85,8 +90,9 @@ public class CreateTeamPopUp extends BasePage {
 
     /**
      * Sets value of textBox.
+     * @param teamType
      */
-    public void setTeamTypeSelect(String teamType) {
+    public void setTeamTypeSelect(final String teamType) {
         WebElementUtil.clickElement(dropDownTeamType);
         selectDropDownOptionByName(teamType);
     }
@@ -101,10 +107,15 @@ public class CreateTeamPopUp extends BasePage {
 
     /**
      * Sets value of textarea.
+     * @param desc
      */
     public void setDescriptionTextarea(final String desc) {
         WebElementUtil.setElement(descriptionTextarea, desc);
     }
+
+    /**
+     * Waits until element is loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
         WebElementUtil.waitUntilElementIsLoaded(teamNameTextBox);
     }
@@ -119,10 +130,10 @@ public class CreateTeamPopUp extends BasePage {
 
     /**
      * Gets title of page.
-     * @return title of page
+     * @param newmembersTextBox
      */
-    public void setMembersTextBox(WebElement membersTextBox) {
-        this.membersTextBox = membersTextBox;
+    public void setMembersTextBox(final WebElement newmembersTextBox) {
+        this.membersTextBox = newmembersTextBox;
     }
 
     /**
@@ -154,6 +165,7 @@ public class CreateTeamPopUp extends BasePage {
     /**
      * Sets fields with team information.
      * @param team
+     * @return page.
      */
     public TeamPage createATeam(final Team team) {
         HashMap<String, Runnable> strategyMap = composeStrategySetter(team.getUpdatedInfo());

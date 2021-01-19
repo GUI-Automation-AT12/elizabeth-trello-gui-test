@@ -1,15 +1,13 @@
 package org.fundacionjala.trello.ui.utils;
 
-import net.bytebuddy.implementation.bind.annotation.Super;
 import org.fundacionjala.core.utils.ReaderJSONFile;
-import org.fundacionjala.trello.api.config.ApiEnvironment;
 
-public class ReaderUserFile extends ReaderJSONFile {
+public final class ReaderUserFile extends ReaderJSONFile {
     private static final String PATH = "properties/Users.json";
     private static ReaderUserFile singleInstance = new ReaderUserFile();
 
     /**
-     * Constructor
+     * Constructor.
      */
     private ReaderUserFile() {
         super(PATH);
@@ -28,6 +26,7 @@ public class ReaderUserFile extends ReaderJSONFile {
 
     /**
      * Gets the email from file.
+     * @param alias
      * @return email
      */
     public String getEmail(final String alias) {
@@ -36,6 +35,7 @@ public class ReaderUserFile extends ReaderJSONFile {
 
     /**
      * Gets the Username from file.
+     * @param alias
      * @return Username
      */
     public String getUsername(final String alias) {
@@ -44,6 +44,7 @@ public class ReaderUserFile extends ReaderJSONFile {
 
     /**
      * Gets the bio from file.
+     * @param alias
      * @return bio
      */
     public String getBio(final String alias) {
@@ -52,6 +53,8 @@ public class ReaderUserFile extends ReaderJSONFile {
 
     /**
      * Gets value from file.
+     * @param alias
+     * @param key
      * @return value
      */
     private String getProperty(final String alias, final String key) {
@@ -60,9 +63,10 @@ public class ReaderUserFile extends ReaderJSONFile {
 
     /**
      * Gets the password from file.
+     * @param alias
      * @return password
      */
-    public String getPassword(String alias) {
+    public String getPassword(final String alias) {
         return getProperty(alias, "password");
     }
 }

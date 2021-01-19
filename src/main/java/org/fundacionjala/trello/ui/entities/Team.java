@@ -46,7 +46,7 @@ public class Team {
      * Sets type of a Team.
      * @param type
      */
-    public void setTeamType(String type) {
+    public void setTeamType(final String type) {
         this.teamType = type;
     }
 
@@ -60,10 +60,10 @@ public class Team {
 
     /**
      * Sets description of a team.
-     * @param descTeam
+     * @param desc
      */
-    public void setDescTeam(String descTeam) {
-        this.descTeam = descTeam;
+    public void setDescTeam(final String desc) {
+        this.descTeam = desc;
     }
 
     /**
@@ -76,10 +76,10 @@ public class Team {
 
     /**
      * Sets members of a Team.
-     * @param members
+     * @param newmembers
      */
-    public void setMembers(String members) {
-        this.members = members;
+    public void setMembers(final String newmembers) {
+        this.members = newmembers;
     }
 
     /**
@@ -92,10 +92,10 @@ public class Team {
 
     /**
      * Sets Map of updated fields.
-     * @param updatedFields
+     * @param fields
      */
-    public void setUpdatedFields(Set<String> updatedFields) {
-        this.updatedFields = updatedFields;
+    public void setUpdatedFields(final Set<String> fields) {
+        this.updatedFields = fields;
     }
 
     /**
@@ -110,9 +110,8 @@ public class Team {
      * Sets id a Team.
      * @param idTeam
      */
-    public void setId(String idTeam) {
-        this.id = idTeam
-        ;
+    public void setId(final String idTeam) {
+        this.id = idTeam;
     }
     /**
      * Gets the shortName from a Team.
@@ -126,16 +125,24 @@ public class Team {
      * Sets shortName a Team.
      * @param name
      */
-    public void setShortName(String name) {
+    public void setShortName(final String name) {
         this.shortName = name.replaceAll("UNIQUE_ID", IdGenerator.getUniqueId());
         this.shortName = this.shortName.replaceAll(" ", "");
     }
 
+    /**
+     *
+     * @return website
+     */
     public String getWebsite() {
         return website;
     }
 
-    public void setWebsite(String setWebsite) {
+    /**
+     *
+     * @param setWebsite
+     */
+    public void setWebsite(final String setWebsite) {
         this.website = setWebsite;
     }
 

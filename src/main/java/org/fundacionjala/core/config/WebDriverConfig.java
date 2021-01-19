@@ -26,6 +26,7 @@ public final class WebDriverConfig extends ReaderJSONFile {
 
     /**
      * Gets implicitTime.
+     * @param browser
      * @return implicitTime
      */
     public int getImplicitTime(final String browser) {
@@ -34,6 +35,7 @@ public final class WebDriverConfig extends ReaderJSONFile {
 
     /**
      * Gets explicitTime.
+     * @param browser
      * @return explicitTime
      */
     public int getExplicitTime(final String browser) {

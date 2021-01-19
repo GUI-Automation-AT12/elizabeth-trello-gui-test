@@ -75,17 +75,19 @@ public final class WebElementUtil {
 
     /**
      * Gets value of WebElement.
+     * @param webElement
      * @return value of WebElement
      */
-    public static String getValue(WebElement webElement) {
+    public static String getValue(final WebElement webElement) {
         return webElement.getAttribute("value");
     }
 
     /**
      * Gets text of WebElement.
+     * @param webElement
      * @return text of WebElement
      */
-    public static String getTextFromWebElement(WebElement webElement) {
+    public static String getTextFromWebElement(final WebElement webElement) {
         return webElement.getText();
 
     }

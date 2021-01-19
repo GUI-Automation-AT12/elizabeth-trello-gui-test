@@ -2,7 +2,7 @@ package org.fundacionjala.trello.api.config;
 
 import org.fundacionjala.core.utils.ReaderPropertiesFile;
 
-public final class ApiEnvironment extends ReaderPropertiesFile{
+public final class ApiEnvironment extends ReaderPropertiesFile {
     private static final String PATH = "APIgradle.properties";
     private static ApiEnvironment singleInstance;
 

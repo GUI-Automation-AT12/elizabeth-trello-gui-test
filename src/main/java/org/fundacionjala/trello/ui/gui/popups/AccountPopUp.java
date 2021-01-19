@@ -31,12 +31,16 @@ public class AccountPopUp extends BasePage {
 
     /**
      * Clicks button menu profile.
+     * @return page.
      */
     public ProfilePage getProfilePage() {
         WebElementUtil.clickElement(btnMenuProfile);
         return new ProfilePage();
     }
 
+    /**
+     * Waits until element is loaded.
+     */
     public void waitUntilPageObjectIsLoaded() {
         WebElementUtil.waitUntilElementIsLoaded(btnMenuProfile);
     }

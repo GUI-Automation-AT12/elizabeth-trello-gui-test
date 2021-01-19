@@ -2,10 +2,10 @@ package org.fundacionjala.trello.ui.stepsDefs;
 
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
-import org.fundacionjala.trello.ui.config.Environment;
 import org.fundacionjala.trello.ui.gui.pages.AtlassianLoginPage;
 import org.fundacionjala.trello.ui.gui.pages.BoardsPage;
 import org.fundacionjala.trello.ui.gui.pages.TrelloLoginPage;
+import org.fundacionjala.trello.ui.utils.ReaderUserFile;
 
 import static org.junit.Assert.assertTrue;
 
@@ -20,8 +20,9 @@ public class LoginStepDefs {
     @When("I set username and password")
     public void setTextBoxes() {
         trelloLoginPage = new TrelloLoginPage();
-        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(Environment.getInstance().getUsername());
-        boardsPage = atlassianLoginPage.loginTrello(Environment.getInstance().getPassword());
+        atlassianLoginPage = trelloLoginPage.clickButtonLoginWithAtlassian(ReaderUserFile.getInstance().getEmail("Valid"));
+        atlassianLoginPage.waitUntilPageObjectIsLoaded();
+        boardsPage = atlassianLoginPage.loginTrello(ReaderUserFile.getInstance().getPassword("Valid"));
         boardsPage.waitUntilPageObjectIsLoaded();
     }
 

@@ -1,8 +1,11 @@
 @UserProfile
 Feature: Edit user
 
+  Background:
+    Given I log in Trello with Editable user credentials
+
+  @Skipped @Functional @ResetUserInformation
   Scenario: Edit user's information in My Profile section
-    Given I log in Trello with valid Credentials
     When I navigate to My Profile Page
       And I edit My Profile with the following information
         | username | new user name UNIQUE_ID |

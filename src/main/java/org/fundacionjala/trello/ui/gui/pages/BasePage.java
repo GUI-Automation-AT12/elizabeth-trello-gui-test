@@ -1,6 +1,6 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
-import org.fundacionjala.trello.core.WebDriverManager;
+import org.fundacionjala.core.ui.WebDriverManager;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.WebDriverWait;

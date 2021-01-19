@@ -1,7 +1,7 @@
 package org.fundacionjala.trello.ui.gui.pages;
 
 import org.fundacionjala.trello.ui.entities.User;
-import org.fundacionjala.trello.ui.utils.WebElementUtil;
+import org.fundacionjala.core.utils.WebElementUtil;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
@@ -110,7 +110,7 @@ public class ProfilePage extends BasePage {
      * @return value of username textBox
      */
     public String getValueUsernameTextBox() {
-        return usernameTextBox.getAttribute("value");
+        return WebElementUtil.getValue(usernameTextBox);
     }
 
     /**
@@ -126,7 +126,7 @@ public class ProfilePage extends BasePage {
      * @return value of bio Textarea
      */
     public String getValueBioTextarea() {
-        return bioTextarea.getAttribute("value");
+        return WebElementUtil.getValue(bioTextarea);
     }
 
     /**
